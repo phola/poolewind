@@ -1,33 +1,32 @@
 'use strict';
 
 angular.module('poolewindApp')
-  .controller('MainCtrl', ['$scope', 'angularFire', function ($scope, angularFire) {
-   
-  var url = 'https://poolewind.firebaseio.com/weather';
-	var promise = angularFire(url, $scope, 'live', {});
+    .controller('MainCtrl', ['$scope', 'angularFire', function ($scope, angularFire) {
 
-	$scope.weather = {};
-	$scope.pauseLiveUpdate = false;
+        var url = 'https://poolewind.firebaseio.com/weather',
+            promise = angularFire(url, $scope, 'live', {});
 
-	$scope.$watch('live', function(value) {    
-       if (!$scope.pauseLiveUpdate)
-       	{
-       		angular.extend($scope.weather, $scope.live);
-       	}
-    });
+        $scope.weather = {};
+        $scope.pauseLiveUpdate = false;
 
-    url = 'https://poolewind.firebaseio.com/history';
-	promise = angularFire(url, $scope, 'history', {});
+        $scope.$watch('live', function (value) {
+            if (!$scope.pauseLiveUpdate) {
+                angular.extend($scope.weather, $scope.live);
+            }
+        });
 
-	$scope.showHistory = function(hour) {		
-  	$scope.pauseLiveUpdate = true;
-		angular.extend($scope.weather, $scope.history[hour]);
-  }
+        url = 'https://poolewind.firebaseio.com/history';
+        promise = angularFire(url, $scope, 'history', {});
 
-  $scope.showLive = function() {   
-    $scope.pauseLiveUpdate = false;
-    //kickstart
-      angular.extend($scope.weather, $scope.live);
-  }
+        $scope.showHistory = function (hour) {
+            $scope.pauseLiveUpdate = true;
+            angular.extend($scope.weather, $scope.history[hour]);
+        };
 
-  }]);
+        $scope.showLive = function () {
+            $scope.pauseLiveUpdate = false;
+            //kickstart
+            angular.extend($scope.weather, $scope.live);
+        };
+
+    }]);

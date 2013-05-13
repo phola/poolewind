@@ -10,9 +10,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/bootstrap.css">
+    <!-- build:css styles/main.css
+    <link rel="stylesheet" href="styles/bootstrap.css">-->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/test.css">
     <!-- endbuild -->
   </head>
   <body ng-app="poolewindApp">
@@ -26,7 +27,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view></div>
+    <!-- Could use ng-init to pre populate scop vars before eaiting for firebase...cache too? -->
+    <div class="container" ng-view="" ng-init="greeting='Hello'; person='World'"></div>
 
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
@@ -35,11 +37,13 @@
 
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="components/firebase/angularfire.min.js"></script>
-
+    <script src="components/iscroll/src/iscroll.js"></script>
+   
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/directives/windBar.js"></script>
+    <script src="scripts/directives/ng-iscroll.js"></script>  
     <script src="scripts/directives/touchMouseStart.js"></script>
     <!-- endbuild -->
 

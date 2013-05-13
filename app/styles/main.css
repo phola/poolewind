@@ -33,7 +33,6 @@
 }
 
 .arrow_box:after {
-
 	border-bottom-color: #c2e1f5;
 	border-width: 50px;
 	left: 50%;
@@ -57,9 +56,19 @@
     z-index: 10;
     color: #c2e1f5;	
 }
+
+#wrapper {
+	position:absolute; z-index:1;
+	top:45px; bottom:0; left:0;
+	width:100%;
+	
+	overflow:auto;
+}
+
 .windbars {
-	height: 225px;
-	width:100%;	
+	/*height: 225px;*/
+	margin: 0 auto;
+	width:1200px;	
 	position: fixed;
 	bottom: 0;
 }
@@ -68,6 +77,7 @@
 	width:100%;
 	opacity: 0.8;
 	padding-top: 2px;
+	height:500px;
 	-webkit-transition: all 1s ease;
 }
 .windbar:hover {
@@ -76,9 +86,8 @@
 
 
 .windbar-wrap {	
-	width:10%;
+	width:10%;	
 	float:left;
-
 }
 
 .windbar-wrap .timestamp{	
@@ -137,55 +146,3 @@
 	margin-left: -7px;
 } */
 /*http://web-profile.com.ua/web-services/color/color_gradient.php?mode1=hex1&hex1=%231600ff&mode2=hex2&hex2=%2300ffed&r1=32&g1=0&b1=255&r2=0&g2=255&b2=237&h1=247&s1=100&l1=50&h2=175&s2=100&l2=50&steps=10&color=Gradient*/
-.k1{background-color: #1600ff;} 
-.k2{background-color: #0006ff;}
-.k3{background-color: #0024ff; }
-.k4{background-color: #0057ff;}
-.k5{background-color: #0070ff;}
-.k6{background-color: #008eff;}
-.k7{background-color: #00a8ff;}
-.k8{background-color: #00c1ff;}
-.k9{background-color: #00dbff;}
-.k10{background-color: #00f9ff;}
-.k11{background-color: #00ffed;}
-/*http://web-profile.com.ua/web-services/color/color_gradient.php?mode1=hex1&hex1=%2300ffed&mode2=hex2&hex2=%23fffe00&r1=22&g1=0&b1=255&r2=0&g2=255&b2=237&h1=244&s1=100&l1=50&h2=175&s2=100&l2=50&steps=10&color=Gradient*/
-.k12{background-color: #00ffc1;}
-.k13{background-color: #00ff92;}
-.k14{background-color: #00ff68;}
-.k15{background-color: #00ff39;}
-.l15{border: 20px solid #00ff39;}
-.l15:after, .l15:before {border-bottom-color: #00ff39;}
-.k16{background-color: #00ff0e;}
-.l16{border: 20px solid #00ff0e;}
-.l16:after, .l16:before {border-bottom-color: #00ff0e;}
-.k17{background-color: #21ff00;}
-.l17{border: 20px solid #21ff00;}
-.l17:after, .l17:before {border-bottom-color: #21ff00;}
-.k18{background-color: #4bff00;}
-.l18{border: 20px solid #4bff00;}
-.l18:after, .l18:before {border-bottom-color: #4bff00;}
-.k19{background-color: #7aff00;}
-.k20{background-color: #a5ff00;}
-.k21{background-color: #d4ff00;}
-.k22{background-color: #fffe00;}
-/*http://web-profile.com.ua/web-services/color/color_gradient.php?mode1=hex1&hex1=%23fffe00&mode2=hex2&hex2=%23ff6e00&r1=0&g1=255&b1=237&r2=255&g2=254&b2=0&h1=175&s1=100&l1=50&h2=60&s2=100&l2=50&steps=10&color=Gradient*/
-.k23{background-color: #fff300;}
-.k24{background-color: #ffe600;}
-.k25{background-color: #ffd900;}
-.k26{background-color: #ffcd00;}
-.k27{background-color: #ffc000;}
-.k28{background-color: #ffaf00;}
-.k29{background-color: #ffa200;}
-.k30{background-color: #ff9500;}
-.k31{background-color: #ff8800;}
-.k32{background-color: #ff7c00;}
-.k33{background-color: #ff6e00;}
-
-.k34{background-color: #ff6600;}
-.k35{background-color: #ff5e00;}
-.k36{background-color: #ff5500;}
-.k37{background-color: #ff3c00;}
-.k38{background-color: #ff2b00;}
-.k39{background-color: #ff1a00;}
-.k40{background-color: #ff1200;}
-

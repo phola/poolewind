@@ -1,0 +1,14 @@
+/*http://web-profile.com.ua/web-services/color/color_gradient.php?mode1=hex1&hex1=%231600ff&mode2=hex2&hex2=%2300ffed&r1=32&g1=0&b1=255&r2=0&g2=255&b2=237&h1=247&s1=100&l1=50&h2=175&s2=100&l2=50&steps=10&color=Gradient*/
+/*http://web-profile.com.ua/web-services/color/color_gradient.php?mode1=hex1&hex1=%2300ffed&mode2=hex2&hex2=%23fffe00&r1=22&g1=0&b1=255&r2=0&g2=255&b2=237&h1=244&s1=100&l1=50&h2=175&s2=100&l2=50&steps=10&color=Gradient*/
+/*http://web-profile.com.ua/web-services/color/color_gradient.php?mode1=hex1&hex1=%23fffe00&mode2=hex2&hex2=%23ff6e00&r1=0&g1=255&b1=237&r2=255&g2=254&b2=0&h1=175&s1=100&l1=50&h2=60&s2=100&l2=50&steps=10&color=Gradient*/
+$colourlist: #1600ff #0006ff #0024ff #0057ff #0070ff #008eff #00a8ff #00c1ff #00dbff #00f9ff #00ffed #00ffc1 #00ff92 #00ff68 #00ff39 #00ff0e #21ff00 #4bff00 #7aff00 #a5ff00 #d4ff00 #fffe00 #fff300 #ffe600 #ffd900 #ffcd00 #ffc000 #ffaf00 #ffa200 #ff9500 #ff8800 #ff7c00 #ff6e00 #ff6600 #ff5e00 #ff5500 #ff3c00 #ff2b00 #ff1a00 #ff1200;
+$margin: 16px;
+
+
+@for $i from 1 through length($colourlist) {
+    $c: nth($colourlist, $i);
+    .k#{$i} {background-color: #{$c} }
+    .l#{$i} {border: 20px solid #{$c} }   
+    .l#{$i}:after, .l#{$i}:before {border-bottom-color: #{$c}}
+}
+    
