@@ -13,7 +13,7 @@
     <!-- build:css styles/main.css
     <link rel="stylesheet" href="styles/bootstrap.css">-->
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/test.css">
+    <link rel="stylesheet" href="components/morris/morris.css">
     <!-- endbuild -->
   </head>
   <body ng-app="poolewindApp">
@@ -30,6 +30,8 @@
     <!-- Could use ng-init to pre populate scop vars before eaiting for firebase...cache too? -->
     <div class="container" ng-view="" ng-init="greeting='Hello'; person='World'"></div>
 
+    <script src="components/jquery/jquery.min.js"></script>
+    <script src="components/raphael.js"></script>
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="components/angular-cookies/angular-cookies.js"></script>
@@ -38,12 +40,15 @@
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="components/firebase/angularfire.min.js"></script>
     <script src="components/iscroll/src/iscroll.js"></script>
+    <script src="components/morris/morris.js"></script>
    
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/root.js"></script>
     <script src="scripts/directives/windBar.js"></script>
     <script src="scripts/directives/ng-iscroll.js"></script>  
+    <script src="scripts/directives/ng-morris.js"></script>
     <script src="scripts/directives/touchMouseStart.js"></script>
     <!-- endbuild -->
 

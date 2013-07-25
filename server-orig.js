@@ -1,7 +1,7 @@
 var request = require('request');
 var Firebase = require('firebase');
 
-var myRootRef = new Firebase('https://wind.firebaseIO.com/poole');
+var myRootRef = new Firebase('https://poolewind.firebaseIO.com/');
 
 
 
@@ -10,29 +10,22 @@ var myRootRef = new Firebase('https://wind.firebaseIO.com/poole');
 function scrapeLive()
 {
    var rand = Math.floor(Math.random()*100000000).toString();
-   //var weatherRef = myRootRef.child("weather");
-   //var historyRef = myRootRef.child("log").push();
+   var weatherRef = myRootRef.child("weather");
+   var historyRef = myRootRef.child("log").push();
    request('http://www.pooleharbourweather.com/weather/clientraw.txt?' + rand, function (error, response, body) {
      if (!error && response.statusCode == 200) {
-      var weatherRef = myRootRef.child("weather");
       var arr = body.split(" ");
-      var hourRef = weatherRef.child(arr[29]);      
-      var timestamp = new Date();
-      timestamp.setHours(parseInt(arr[29]));
-      timestamp.setMinutes(parseInt(arr[30]));
-      timestamp.setSeconds(parseInt(arr[31]));
-      console.log(timestamp);
-      var data = {
-                   's' : arr[1], //avspeed
-                   //'MaxGust' : arr[71],
-                   'g' : arr[2], //gusts
-                   'd' : arr[3]//, //WindDir
-                  // 't' : timestamp.getTime()
+      var data = {'StationName' : arr[32], 
+                   'AvgSpeed' : arr[1], 
+                   'MaxGust' : arr[71],
+                   'Gusts' : arr[2], 
+                   'WindDir' : arr[3],
+                    'TimeStamp' : getZeroPref(arr[29]) + ':' + getZeroPref(arr[30]) + ':' + getZeroPref(arr[31])
                   };
 
  
-       hourRef.child(timestamp.getTime()).set(data);
-     // historyRef.set(data);
+       weatherRef.set(data);
+      historyRef.set(data);
      
     }
   });
@@ -86,6 +79,6 @@ var history = myRootRef.child("history");
 
 
 scrapeLive();
-//scrapeHistory();
-setInterval(scrapeLive,15000);
+scrapeHistory();
+setInterval(scrapeLive,5000);
 setInterval(scrapeHistory,600000);
