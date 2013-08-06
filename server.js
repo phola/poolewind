@@ -1,3 +1,5 @@
+var http = require('http')
+var port = process.env.PORT || 1337;
 var request = require('request');
 var Firebase = require('firebase');
 
@@ -224,3 +226,16 @@ setTimeout(hlogger,30000);
 setInterval(logger,10000);
 setInterval(hlogger,600000);
 //setInterval(scrapeHistory,600000);
+
+http.createServer(function(req, res) {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  
+  if (rAv)
+  {
+    res.end(JSON.stringify(rAv));
+  }
+  else
+  {
+    res.end('Hello World\n');
+  }
+}).listen(port);
