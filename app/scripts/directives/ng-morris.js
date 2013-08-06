@@ -15,7 +15,7 @@ angular.module('ng-morris', []).directive('ngMorris', function() {
             if (Morris) {
                 $scope.graph = Morris.Line(config);
 
-                $scope.$watch('model', function() {
+                $scope.$watchCollection('model', function() {
                     var t = $scope.model;
                     $scope.graph.setData(t);
                 });

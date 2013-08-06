@@ -38,6 +38,56 @@ function scrapeLive()
   });
 }
 
+function logger()
+{
+   var rand = Math.floor(Math.random()*100000000).toString();
+   //var weatherRef = myRootRef.child("weather");
+   //var historyRef = myRootRef.child("log").push();
+   request('http://www.pooleharbourweather.com/weather/clientraw.txt?' + rand, function (error, response, body) {
+     if (!error && response.statusCode == 200) {
+      var hourRef = myRootRef.child("log");//.push();
+      var arr = body.split(" ");
+     // var hourRef = weatherRef.child("log");      
+      var timestamp = new Date();
+      timestamp.setHours(parseInt(arr[29]));
+      timestamp.setMinutes(parseInt(arr[30]));
+      timestamp.setSeconds(parseInt(arr[31]));
+      console.log(timestamp);
+      var data = {
+                   's' : arr[1], //avspeed
+                   //'MaxGust' : arr[71],
+                   //'g' : arr[2], //gusts
+                   'd' : arr[3], //WindDir
+                   't' : timestamp.getTime()
+                  };
+
+ 
+       hourRef.child(timestamp.getTime()).setWithPriority(data,timestamp.getTime());
+       //trimlog(timestamp.getTime());
+     //  hourRef.set(data);
+     // historyRef.set(data);
+     
+    }
+  });
+}
+
+
+function trimlog(timestamp)
+{
+console.log('t : ' + (timestamp-30000));
+    var logref = myRootRef.child("log");//.push();
+    var q = logref.startAt(timestamp-30000).limit(10);
+    // q.off('child_added');
+
+    q.on('child_added', function(childSnapshot) { 
+        console.log(childSnapshot.getPriority());
+       
+
+       // myRootRef.child("log").child(childSnapshot.name()).remove();
+    });
+
+}
+
 function getZeroPref(i)
 {
   return (i.length>1) ? i : '0'+ i;
@@ -85,7 +135,86 @@ var history = myRootRef.child("history");
 }
 
 
-scrapeLive();
-//scrapeHistory();
-setInterval(scrapeLive,15000);
-setInterval(scrapeHistory,600000);
+var latest = 0;
+var logref = myRootRef.child("log");
+ logref.on('child_added', function(c) { 
+    latest = c.name();
+   // console.log(latest);
+/* logref.once('value', function(dataSnapshot) { 
+      var counter = 0;
+      var refs = [];
+          dataSnapshot.forEach(function(childSnapshot) {
+            // This code will be called twice.
+            var name = childSnapshot.name();
+            var childData = childSnapshot.val();
+          //   console.log(counter);
+           //  console.log(name);
+           // console.log(childData);
+           counter++;
+           refs.push(name);
+          });
+          refs.reverse();
+          //console.log(refs);
+
+          refs.forEach(function(r){
+            if ((refs[0]-r)>600000)
+            {
+              console.log(refs[0]-r);
+              logref.child(r).remove();
+            }
+          })
+    });*/
+
+
+});
+
+
+var rAv = {};
+
+  logref.on('value', function(dataSnapshot) { 
+      var counter=0, tS = 0, tD = 0, avS= 0, avD = 0;
+      var refs = [];
+          dataSnapshot.forEach(function(childSnapshot) {
+            // This code will be called twice.
+            var name = childSnapshot.name();
+            var childData = childSnapshot.val();
+            tD = tD + parseFloat(childData.d);
+             tS = tS + parseFloat(childData.s);
+        //console.log(parseFloat(childData.d));
+
+           counter++;
+           refs.push(name);
+          });
+
+if (counter>0)
+{
+   rAv = { d : tD/counter , s: tS/counter, t:parseInt(latest)};
+}
+         
+console.log(counter);
+console.log(rAv);
+
+          refs.reverse();
+          //console.log(refs);
+
+          refs.forEach(function(r){
+            if ((latest-r)>600000)
+            {
+             // console.log(r);
+             logref.child(r).remove();
+            }
+          })
+    });
+
+
+
+function hlogger() {
+  var hlogref = myRootRef.child("hlog");
+ hlogref.child(rAv.t).setWithPriority(rAv,rAv.t);
+}
+
+//scrapeLive();
+//hlogger();
+setInterval(logger,10000);
+setInterval(hlogger,600000);
+//setInterval(scrapeHistory,600000);
