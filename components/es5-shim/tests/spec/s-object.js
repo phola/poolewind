@@ -19,7 +19,6 @@ describe('Object', function () {
 
         var keys = Object.keys(obj);
         it('should have correct length', function () {
-<<<<<<< HEAD
             expect(keys.length).toBe(7);
         });
 
@@ -31,33 +30,14 @@ describe('Object', function () {
             keys.forEach(function (name) {
                 expect(obj.hasOwnProperty(name)).toBe(true);
             });
-=======
-            expect(keys.length).toBe(7);    
-        });
-
-        it('should return an Array', function () {
-            expect(Array.isArray(keys)).toBe(true);    
-        });
-        
-        it('should return names which are own properties', function () {
-            keys.forEach(function (name) {
-                expect(obj.hasOwnProperty(name)).toBe(true);
-            });    
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         });
 
         it('should return names which are enumerable', function () {
             keys.forEach(function (name) {
                 expect(loopedValues.indexOf(name)).toNotBe(-1);
-<<<<<<< HEAD
             })
         });
 
-=======
-            }) 
-        });
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should throw error for non object', function () {
             var e = {};
             expect(function () {
@@ -69,16 +49,11 @@ describe('Object', function () {
             }).toThrow(e);
         });
     });
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 	describe("Object.isExtensible", function () {
         var obj = { };
 
         it('should return true if object is extensible', function () {
-<<<<<<< HEAD
             expect(Object.isExtensible(obj)).toBe(true);
         });
 
@@ -94,23 +69,6 @@ describe('Object', function () {
             expect(Object.isExtensible(Object.freeze(obj))).toBe(false);
         });
 
-=======
-            expect(Object.isExtensible(obj)).toBe(true);    
-        });
-		
-        it('should return false if object is not extensible', function () {
-            expect(Object.isExtensible(Object.preventExtensions(obj))).toBe(false);    
-        });
-        
-        it('should return false if object is seal', function () {
-            expect(Object.isExtensible(Object.seal(obj))).toBe(false);    
-        });
-		
-        it('should return false if object is freeze', function () {
-            expect(Object.isExtensible(Object.freeze(obj))).toBe(false);    
-        });
-		
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should throw error for non object', function () {
             var e1 = {};
             expect(function () {
@@ -122,7 +80,6 @@ describe('Object', function () {
             }).toThrow(e1);
         });
     });
-<<<<<<< HEAD
 
 	describe("Object.defineProperty", function () {
         var obj;
@@ -222,7 +179,3 @@ describe('Object', function () {
         });
     });
 });
-=======
- 
-});
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872

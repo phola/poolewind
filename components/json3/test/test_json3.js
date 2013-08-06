@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* JSON 3 Unit Test Suite | http://bestiejs.github.io/json3 */
 (function (root) {
   var isLoader = typeof define == "function" && !!define.amd;
@@ -19,25 +18,6 @@
 
   // Create the test suite.
   var testSuite = JSON.testSuite = new Spec.Suite("JSON 3 Unit Tests");
-=======
-/* JSON 3 Unit Test Suite | http://bestiejs.github.com/json3 */
-(function (root) {
-  var isLoader = typeof define == "function" && !!define.amd,
-  isModule = typeof require == "function" && typeof exports == "object" && exports && !isLoader,
-  isBrowser = "window" in root && root.window == root && typeof root.navigator != "undefined",
-  isEngine = !isBrowser && !isModule && typeof root.load == "function",
-
-  load = function load(module, path) {
-    return root[module] || (isModule ? require(path) : isEngine ?
-      (root.load(path.replace(/\.js$/, "") + ".js"), root[module]) : null);
-  },
-
-  // Load Spec, Newton, and JSON 3.
-  Spec = load("Spec", "./../vendor/spec/lib/spec"), Newton = load("Newton", "./../vendor/spec/lib/newton"), JSON = load("JSON", "../lib/json3"),
-
-  // Create the test suite.
-  testSuite = JSON.testSuite = new Spec.Suite("JSON 3 Unit Tests");
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 
   // Create and attach the logger event handler.
   testSuite.on("all", isBrowser ? Newton.createReport("suite") : Newton.createConsole(function (value) {
@@ -57,11 +37,7 @@
     return this.error(function () {
       JSON.parse(source, callback);
     }, function (exception) {
-<<<<<<< HEAD
       return supportsNamedExceptions ? exception.name == "SyntaxError" : true;
-=======
-      return exception.name == "SyntaxError";
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
     }, message);
   };
 
@@ -81,11 +57,7 @@
     return this.error(function () {
       JSON.stringify(value);
     }, function (exception) {
-<<<<<<< HEAD
       return supportsNamedExceptions ? exception.name == "TypeError" : true;
-=======
-      return exception.name == "TypeError";
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
     }, message);
   };
 
@@ -166,11 +138,7 @@
   });
 
   testSuite.addTest("`parse`: String Literals", function (test) {
-<<<<<<< HEAD
     var expected = 48, controlCharacters = ["\u0001", "\u0002", "\u0003",
-=======
-    var expected = 49, controlCharacters = ["\u0001", "\u0002", "\u0003",
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
       "\u0004", "\u0005", "\u0006", "\u0007", "\b", "\t", "\n", "\u000b", "\f",
       "\r", "\u000e", "\u000f", "\u0010", "\u0011", "\u0012", "\u0013",
       "\u0014", "\u0015", "\u0016", "\u0017", "\u0018", "\u0019", "\u001a",
@@ -187,12 +155,8 @@
 
     this.parses("\u2028", '"\\u2028"', "String containing an escaped Unicode line separator");
     this.parses("\u2029", '"\\u2029"', "String containing an escaped Unicode paragraph separator");
-<<<<<<< HEAD
     // ExtendScript doesn't handle surrogate pairs correctly; attempting to
     // parse `"\ud834\udf06"` will throw an uncatchable error (issue #29).
-=======
-    this.parses("\ud834\udf06", '"\\ud834\\udf06"', "String containing an escaped Unicode surrogate pair");
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
     this.parses("\ud834\udf06", '"\ud834\udf06"', "String containing an unescaped Unicode surrogate pair");
     this.parses("\u0001", '"\\u0001"', "String containing an escaped ASCII control character");
     this.parses("\b", '"\\b"', "String containing an escaped backspace");
@@ -255,14 +219,10 @@
     this.serializes("{\n  \"bar\": 456\n}", {"foo": 123, "bar": 456}, "Object; optional `filter` and `whitespace` arguments", ["bar"], 2);
     // Test adapted from the Opera JSON test suite via Ken Snyder.
     // See http://testsuites.opera.com/JSON/correctness/scripts/045.js
-<<<<<<< HEAD
     // The regular expression is necessary because the ExtendScript engine
     // only approximates pi to 14 decimal places (ES 3 and ES 5 approximate
     // pi to 15 places).
     this.ok(/^\{"PI":3\.\d{14,15}\}$/.test(JSON.stringify(Math, ["PI"])), "List of non-enumerable property names specified as the `filter` argument");
-=======
-    this.serializes('{"PI":3.141592653589793}', Math, "List of non-enumerable property names specified as the `filter` argument", ["PI"]);
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
     this.equal(3, JSON.parse("[1, 2, 3]", function (key, value) {
       if (typeof value == "object" && value) {
         return value;
@@ -272,11 +232,7 @@
   });
 
   testSuite.addTest("`stringify`", function () {
-<<<<<<< HEAD
     var expected = 29;
-=======
-    var expected = 29, value, pattern;
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 
     // Special values.
     this.serializes("null", null, "`null` is represented literally");
@@ -291,11 +247,7 @@
     this.serializes("[null]", [void 0], "`[undefined]` is serialized as `[null]`");
 
     // Property enumeration is implementation-dependent.
-<<<<<<< HEAD
     var value = {
-=======
-    value = {
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
       "jdalton": ["John-David", 29],
       "kitcambridge": ["Kit", 18],
       "mathias": ["Mathias", 23]
@@ -447,11 +399,7 @@
 
     // Test 15.12.3-11-1 thru 5.12.3-11-15.
     this.serializes(void 0, void 0, "`JSON.stringify(undefined)` should return `undefined`");
-<<<<<<< HEAD
     this.serializes('"replacement"', void 0, "The `JSON.stringify` callback function can be called on a top-level `undefined` value", function () {
-=======
-    this.serializes('"replacement"', void 0, "The `JSON.stringify` callback function can be called on a top-level `undefined` value", function (key, value) {
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
       return "replacement";
     });
     this.serializes('"a string"', "a string", "`JSON.stringify` should serialize top-level string primitives");
@@ -564,11 +512,7 @@
       value = {};
       // IE 8 only allows properties to be defined on DOM elements. Credits:
       // John-David Dalton and Juriy Zaytsev.
-<<<<<<< HEAD
       if ((Object.defineProperty(value, value, value), "value" in Object.getOwnPropertyDescriptor(value, value))) {
-=======
-      if (Object.defineProperty(value, value, value), "value" in Object.getOwnPropertyDescriptor(value, value)) {
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         expected += 1;
         value = [0, 1, 2, 3];
         Object.prototype[3] = 3;

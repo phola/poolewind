@@ -12,19 +12,11 @@ describe('Array', function() {
         o.length = arr.length;
         return o;
     };
-<<<<<<< HEAD
 
     describe('forEach', function() {
         "use strict";
         var expected, actual;
 
-=======
-    
-    describe('forEach', function() {
-        "use strict";
-        var expected, actual;
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         beforeEach(function() {
             expected = {0:2, 2: undefined, 3:true, 4: 'hej', 5:null, 6:false, 7:0 };
             actual = {};
@@ -45,11 +37,7 @@ describe('Array', function() {
             expect(arr).toEqual([1,2,3,4,5,6]);
             expect(i).toBe(3);
         });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should set the right context when given none', function() {
             var context;
             [1].forEach(function() {context = this;});
@@ -63,21 +51,13 @@ describe('Array', function() {
         });
         it('should iterate all using a context', function() {
             var o = { a: actual };
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             testSubject.forEach(function(obj, index) {
                 this.a[index] = obj;
             }, o);
             expect(actual).toExactlyMatch(expected);
         });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should iterate all in an array-like object', function() {
             var ts = createArrayLikeFromArray(testSubject);
             Array.prototype.forEach.call(ts, function(obj, index) {
@@ -88,11 +68,7 @@ describe('Array', function() {
         it('should iterate all in an array-like object using a context', function() {
             var ts = createArrayLikeFromArray(testSubject),
                 o = { a: actual };
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             Array.prototype.forEach.call(ts, function(obj, index) {
                 this.a[index] = obj;
             }, o);
@@ -128,21 +104,13 @@ describe('Array', function() {
     });
     describe('some', function() {
         var actual, expected, numberOfRuns;
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         beforeEach(function() {
             expected = {0:2, 2: undefined, 3:true };
             actual = {};
             numberOfRuns = 0;
         });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should pass the correct values along to the callback', function() {
             var callback = jasmine.createSpy('callback');
             var array = ['1'];
@@ -165,11 +133,7 @@ describe('Array', function() {
             [1].some(function() {context = this;});
             expect(context).toBe(function() {return this}.call());
         });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should return false if it runs to the end', function() {
             actual = testSubject.some(function() {});
             expect(actual).toBeFalsy();
@@ -182,11 +146,7 @@ describe('Array', function() {
             actual = [].some(function() { return true; });
             expect(actual).toBeFalsy();
         });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should stop after 3 elements', function() {
             testSubject.some(function(obj, index) {
                 actual[index] = obj;
@@ -210,11 +170,7 @@ describe('Array', function() {
             }, o);
             expect(actual).toExactlyMatch(expected);
         });
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should stop after 3 elements in an array-like object', function() {
             var ts = createArrayLikeFromArray(testSubject);
             Array.prototype.some.call(ts, function(obj, index) {
@@ -243,21 +199,13 @@ describe('Array', function() {
     });
     describe('every', function() {
         var actual, expected, numberOfRuns;
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         beforeEach(function() {
             expected = {0:2, 2: undefined, 3:true };
             actual = {};
             numberOfRuns = 0;
         });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should pass the correct values along to the callback', function() {
             var callback = jasmine.createSpy('callback');
             var array = ['1'];
@@ -280,19 +228,11 @@ describe('Array', function() {
             [1].every(function() {context = this;});
             expect(context).toBe(function() {return this}.call());
         });
-<<<<<<< HEAD
 
         it('should return true if the array is empty', function() {
             actual = [].every(function() { return true; });
             expect(actual).toBeTruthy();
 
-=======
-        
-        it('should return true if the array is empty', function() {
-            actual = [].every(function() { return true; });
-            expect(actual).toBeTruthy();
-            
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             actual = [].every(function() { return false; });
             expect(actual).toBeTruthy();
         });
@@ -304,11 +244,7 @@ describe('Array', function() {
             actual = [1,2,3].every(function() { return false; });
             expect(actual).toBeFalsy();
         });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should return after 3 elements', function() {
             testSubject.every(function(obj, index) {
                 actual[index] = obj;
@@ -332,11 +268,7 @@ describe('Array', function() {
             }, o);
             expect(actual).toExactlyMatch(expected);
         });
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should stop after 3 elements in an array-like object', function() {
             var ts = createArrayLikeFromArray(testSubject);
             Array.prototype.every.call(ts, function(obj, index) {
@@ -363,7 +295,6 @@ describe('Array', function() {
             expect(actual).toExactlyMatch(expected);
         });
     });
-<<<<<<< HEAD
 
     describe('indexOf', function() {
         "use strict";
@@ -375,19 +306,6 @@ describe('Array', function() {
 
         });
 
-=======
-    
-    describe('indexOf', function() {
-        "use strict";
-        var actual, expected, testSubject;
-        
-        beforeEach(function() {
-            testSubject = [2, 3, undefined, true, 'hej', null, 2, false, 0];
-            delete testSubject[1];
-    
-        });
-    
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should find the element', function() {
             expected = 4;
             actual = testSubject.indexOf('hej');
@@ -411,11 +329,7 @@ describe('Array', function() {
         it('should use a strict test', function() {
             actual = testSubject.indexOf(null);
             expect(actual).toEqual(5);
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             actual = testSubject.indexOf('2');
             expect(actual).toEqual(-1);
         });
@@ -434,11 +348,7 @@ describe('Array', function() {
         it('should work with fromIndex being negative and greater than the length', function() {
             expect(testSubject.indexOf('hej', -20)).toEqual(4);
         });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         describe('Array-like', function ArrayLike() {
             var indexOf = Array.prototype.indexOf,
                 testAL;
@@ -473,11 +383,7 @@ describe('Array', function() {
             it('should use a strict test (array-like)', function() {
                 actual = Array.prototype.indexOf.call(testAL, null);
                 expect(actual).toEqual(5);
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 actual = Array.prototype.indexOf.call(testAL, '2');
                 expect(actual).toEqual(-1);
             });
@@ -501,11 +407,7 @@ describe('Array', function() {
     describe('lastIndexOf', function() {
         "use strict";
         var actual, expected, testSubject, testAL;
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         beforeEach(function() {
             testSubject = [2, 3, undefined, true, 'hej', null, 2, 3, false, 0];
             delete testSubject[1];
@@ -535,11 +437,7 @@ describe('Array', function() {
             it('should use a strict test', function() {
                 actual = testSubject.lastIndexOf(null);
                 expect(actual).toEqual(5);
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 actual = testSubject.lastIndexOf('2');
                 expect(actual).toEqual(-1);
             });
@@ -559,11 +457,7 @@ describe('Array', function() {
                 expect(testSubject.lastIndexOf(2, -20)).toEqual(-1);
             });
         });
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         describe('Array like', function() {
             var lastIndexOf = Array.prototype.lastIndexOf,
                 testAL;
@@ -597,11 +491,7 @@ describe('Array', function() {
             it('should use a strict test (array-like)', function() {
                 actual = lastIndexOf.call(testAL, null);
                 expect(actual).toEqual(5);
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 actual = lastIndexOf.call(testAL, '2');
                 expect(actual).toEqual(-1);
             });
@@ -622,11 +512,7 @@ describe('Array', function() {
             });
         });
     });
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
     describe('filter', function() {
         var filteredArray,
             callback = function callback(o, i, arr) {
@@ -634,11 +520,7 @@ describe('Array', function() {
                     i != 3 && i != 5
                 );
             };
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         beforeEach(function() {
             testSubject = [2, 3, undefined, true, 'hej', 3, null, false, 0];
             delete testSubject[1];
@@ -820,11 +702,7 @@ describe('Array', function() {
                 expect(result).toExactlyMatch(expected);
             });
             it('should skip non-existing values', function() {
-<<<<<<< HEAD
                 var array = [1,2,3,4],
-=======
-                var array = [1,2,3,4], 
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                     i = 0;
                 delete array[2];
                 array.map(function() {
@@ -880,11 +758,7 @@ describe('Array', function() {
                 expect(result).toExactlyMatch(expected);
             });
             it('should skip non-existing values', function() {
-<<<<<<< HEAD
                 var array = createArrayLikeFromArray([1,2,3,4]),
-=======
-                var array = createArrayLikeFromArray([1,2,3,4]), 
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                     i = 0;
                 delete array[2];
                 Array.prototype.map.call(array, function() {
@@ -894,20 +768,12 @@ describe('Array', function() {
             });
         });
     });
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
     describe('reduce', function() {
         beforeEach(function() {
             testSubject = [1,2,3];
         });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         describe('Array', function() {
             it('should pass the correct arguments to the callback', function() {
                 var spy = jasmine.createSpy().andReturn(0);
@@ -966,11 +832,7 @@ describe('Array', function() {
                         visited[b] = true;
                     return 0;
                 });
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 expect(visited).toEqual({ '1': true, '3': true });
             });
             it('should have the right length', function() {
@@ -1047,11 +909,7 @@ describe('Array', function() {
                         visited[b] = true;
                     return 0;
                 });
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 expect(visited).toEqual({ '1': true, '3': true });
             });
             it('should have the right length', function() {
@@ -1063,11 +921,7 @@ describe('Array', function() {
         beforeEach(function() {
             testSubject = [1,2,3];
         });
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         describe('Array', function() {
             it('should pass the correct arguments to the callback', function() {
                 var spy = jasmine.createSpy().andReturn(0);
@@ -1099,7 +953,6 @@ describe('Array', function() {
                 }).toThrow();
                 expect(spy).not.toHaveBeenCalled();
             });
-<<<<<<< HEAD
             it('should work as expected for empty arrays with an initial value', function() {
                 var spy = jasmine.createSpy(),
                     result;
@@ -1108,8 +961,6 @@ describe('Array', function() {
                 expect(spy).not.toHaveBeenCalled();
                 expect(result).toBe('');
             });
-=======
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             it('should throw correctly if no callback is given', function() {
                 expect(function() {
                     testSubject.reduceRight();
@@ -1137,11 +988,7 @@ describe('Array', function() {
                         visited[b] = true;
                     return 0;
                 });
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 expect(visited).toEqual({ '1': true, '3': true });
             });
             it('should have the right length', function() {
@@ -1218,11 +1065,7 @@ describe('Array', function() {
                         visited[b] = true;
                     return 0;
                 });
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 expect(visited).toEqual({ '1': true, '3': true });
             });
             it('should have the right length', function() {
@@ -1246,11 +1089,7 @@ describe('Array', function() {
                 42,
                 0,
                 {},
-<<<<<<< HEAD
                 Object.create && Object.create(null) || null,
-=======
-                Object.create(null),
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 /foo/,
                 arguments,
                 document.getElementsByTagName("div")
@@ -1272,7 +1111,6 @@ describe('Array', function() {
         var b = ["b"],
             a = [1, "a", b],
             test;
-<<<<<<< HEAD
 
         var makeArray = function(l, prefix) {
             prefix = prefix || "";
@@ -1287,19 +1125,12 @@ describe('Array', function() {
             test = a.slice(0);
         });
 
-=======
-        beforeEach(function() {
-            test = a.slice(0);
-        });
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('basic implementation test 1', function () {
             expect(test.splice(0)).toEqual(a);
         });
         it('basic implementation test 2', function () {
             test.splice(0, 2);
             expect(test).toEqual([b]);
-<<<<<<< HEAD
         });
 
         it('should return right result 1', function () {
@@ -1364,11 +1195,6 @@ describe('Array', function() {
         });
 
 
-=======
-        });            
-                 
-        
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         it('should do nothing if method called with no arguments', function () {
             expect(test.splice()).toEqual([]);
             expect(test).toEqual(a);
@@ -1390,15 +1216,8 @@ describe('Array', function() {
         });
         it('runshould have the right length', function () {
             expect(test.splice.length).toBe(2);
-<<<<<<< HEAD
         });
     });
 
 
-=======
-        }); 
-    });
-
-    
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 });

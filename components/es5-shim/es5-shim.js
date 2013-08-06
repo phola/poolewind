@@ -45,11 +45,7 @@ if (!Function.prototype.bind) {
         // 3. Let A be a new (possibly empty) internal list of all of the
         //   argument values provided after thisArg (arg1, arg2 etc), in order.
         // XXX slicedArgs will stand in for "A" if used
-<<<<<<< HEAD
         var args = _Array_slice_.call(arguments, 1); // for normal call
-=======
-        var args = slice.call(arguments, 1); // for normal call
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         // 4. Let F be a new native ECMAScript object.
         // 11. Set the [[Prototype]] internal property of F to the standard
         //   built-in Function prototype object as specified in 15.3.3.1.
@@ -80,11 +76,7 @@ if (!Function.prototype.bind) {
 
                 var result = target.apply(
                     this,
-<<<<<<< HEAD
                     args.concat(_Array_slice_.call(arguments))
-=======
-                    args.concat(slice.call(arguments))
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 );
                 if (Object(result) === result) {
                     return result;
@@ -113,11 +105,7 @@ if (!Function.prototype.bind) {
                 // equiv: target.call(this, ...boundArgs, ...args)
                 return target.apply(
                     that,
-<<<<<<< HEAD
                     args.concat(_Array_slice_.call(arguments))
-=======
-                    args.concat(slice.call(arguments))
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 );
 
             }
@@ -171,11 +159,7 @@ if (!Function.prototype.bind) {
 var call = Function.prototype.call;
 var prototypeOfArray = Array.prototype;
 var prototypeOfObject = Object.prototype;
-<<<<<<< HEAD
 var _Array_slice_ = prototypeOfArray.slice;
-=======
-var slice = prototypeOfArray.slice;
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 // Having a toString local variable name breaks in Opera so use _toString.
 var _toString = call.bind(prototypeOfObject.toString);
 var owns = call.bind(prototypeOfObject.hasOwnProperty);
@@ -205,7 +189,6 @@ if ((supportsAccessors = owns(prototypeOfObject, "__defineGetter__"))) {
 // IE < 9 bug: [1,2].splice(0).join("") == "" but should be "12"
 if ([1,2].splice(0).length != 2) {
     var array_splice = Array.prototype.splice;
-<<<<<<< HEAD
 
     if(function() { // test IE < 9 to splice bug - see issue #138
         function makeArray(l) {
@@ -292,18 +275,6 @@ if ([1,2].splice(0).length != 2) {
         }
 
     }
-=======
-    Array.prototype.splice = function(start, deleteCount) {
-        if (!arguments.length) {
-            return [];
-        } else {
-            return array_splice.apply(this, [
-                start === void 0 ? 0 : start,
-                deleteCount === void 0 ? (this.length - start) : deleteCount
-            ].concat(slice.call(arguments, 2)))
-        }
-    };
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 }
 
 // ES5 15.4.4.12
@@ -571,13 +542,10 @@ if (!Array.prototype.reduceRight) {
             } while (true);
         }
 
-<<<<<<< HEAD
         if (i < 0) {
             return result;
         }
 
-=======
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         do {
             if (i in this) {
                 result = fun.call(void 0, result, self[i], i, object);
@@ -858,11 +826,7 @@ if (!Date.parse || "Date.parse is buggy") {
                 ":(\\d{2})" + // minutes capture
                 "(?:" + // optional :seconds.milliseconds
                     ":(\\d{2})" + // seconds capture
-<<<<<<< HEAD
                     "(?:(\\.\\d{1,}))?" + // milliseconds capture
-=======
-                    "(?:\\.(\\d{3}))?" + // milliseconds capture
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 ")?" +
             "(" + // capture UTC offset component
                 "Z|" + // UTC capture
@@ -913,11 +877,7 @@ if (!Date.parse || "Date.parse is buggy") {
                     hour = Number(match[4] || 0),
                     minute = Number(match[5] || 0),
                     second = Number(match[6] || 0),
-<<<<<<< HEAD
                     millisecond = Math.floor(Number(match[7] || 0) * 1000),
-=======
-                    millisecond = Number(match[7] || 0),
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                     // When time zone is missed, local offset should be used
                     // (ES 5.1 bug)
                     // see https://bugs.ecmascript.org/show_bug.cgi?id=112
@@ -973,7 +933,6 @@ if (!Date.now) {
 
 
 //
-<<<<<<< HEAD
 // Number
 // ======
 //
@@ -1129,8 +1088,6 @@ if (!Number.prototype.toFixed || (0.00008).toFixed(3) !== '0.000' || (0.9).toFix
 
 
 //
-=======
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 // String
 // ======
 //
