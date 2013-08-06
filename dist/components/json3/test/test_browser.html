@@ -9,13 +9,8 @@
     <script>
     var curl;
     (function () {
-<<<<<<< HEAD
       var parameters;
       if (!(typeof Spec == "object" && Spec || typeof Newton == "object" && Newton)) {
-=======
-      var Spec = typeof Spec == "object" && Spec, Newton = typeof Newton == "object" && Newton, parameters;
-      if (!Spec || !Newton) {
->>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         return;
       }
       parameters = Newton.parseQuery(location.search);
