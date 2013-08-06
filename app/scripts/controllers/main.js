@@ -10,8 +10,7 @@ angular.module('poolewindApp')
         $scope.pauseLiveUpdate = false;
 
         $scope.$watch('live', function (value) {
-            debugger;
-            if (!$scope.pauseLiveUpdate) {
+               if (!$scope.pauseLiveUpdate) {
                 angular.extend($scope.weather, $scope.live);
             }
         });
