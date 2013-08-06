@@ -1,5 +1,9 @@
 /**
+<<<<<<< HEAD
  * @license AngularJS v1.0.7
+=======
+ * @license AngularJS v1.0.6
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
  * (c) 2010-2012 Google, Inc. http://angularjs.org
  * License: MIT
  *
@@ -241,7 +245,11 @@ angular.mock.$ExceptionHandlerProvider = function() {
    *
    * @param {string} mode Mode of operation, defaults to `rethrow`.
    *
+<<<<<<< HEAD
    *   - `rethrow`: If any errors are passed into the handler in tests, it typically
+=======
+   *   - `rethrow`: If any errors are are passed into the handler in tests, it typically
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
    *                means that there is a bug in the application or test, so this mock will
    *                make these tests fail.
    *   - `log`: Sometimes it is desirable to test that an error is thrown, for this case the `log` mode stores an
@@ -322,6 +330,7 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
+<<<<<<< HEAD
        * Array of messages logged using {@link ngMock.$log#log}.
        *
        * @example
@@ -329,6 +338,9 @@ angular.mock.$LogProvider = function() {
        * $log.log('Some Log');
        * var first = $log.log.logs.unshift();
        * </pre>
+=======
+       * Array of logged messages.
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
        */
       $log.log.logs = [];
       /**
@@ -337,6 +349,7 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
+<<<<<<< HEAD
        * Array of messages logged using {@link ngMock.$log#warn}.
        *
        * @example
@@ -344,6 +357,9 @@ angular.mock.$LogProvider = function() {
        * $log.warn('Some Warning');
        * var first = $log.warn.logs.unshift();
        * </pre>
+=======
+       * Array of logged messages.
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
        */
       $log.warn.logs = [];
       /**
@@ -352,6 +368,7 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
+<<<<<<< HEAD
        * Array of messages logged using {@link ngMock.$log#info}.
        *
        * @example
@@ -359,6 +376,9 @@ angular.mock.$LogProvider = function() {
        * $log.info('Some Info');
        * var first = $log.info.logs.unshift();
        * </pre>
+=======
+       * Array of logged messages.
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
        */
       $log.info.logs = [];
       /**
@@ -367,6 +387,7 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
+<<<<<<< HEAD
        * Array of messages logged using {@link ngMock.$log#error}.
        *
        * @example
@@ -374,6 +395,9 @@ angular.mock.$LogProvider = function() {
        * $log.log('Some Error');
        * var first = $log.error.logs.unshift();
        * </pre>
+=======
+       * Array of logged messages.
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
        */
       $log.error.logs = [];
     };
@@ -677,10 +701,17 @@ angular.mock.dump = function(object) {
  * @ngdoc object
  * @name ngMock.$httpBackend
  * @description
+<<<<<<< HEAD
  * Fake HTTP backend implementation suitable for unit testing applications that use the
  * {@link ng.$http $http service}.
  *
  * *Note*: For fake HTTP backend implementation suitable for end-to-end testing or backend-less
+=======
+ * Fake HTTP backend implementation suitable for unit testing application that use the
+ * {@link ng.$http $http service}.
+ *
+ * *Note*: For fake http backend implementation suitable for end-to-end testing or backend-less
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
  * development please see {@link ngMockE2E.$httpBackend e2e $httpBackend mock}.
  *
  * During unit testing, we want our unit tests to run quickly and have no external dependencies so
@@ -1711,8 +1742,17 @@ window.jasmine && (function(window) {
    * @name angular.mock.inject
    * @description
    *
+<<<<<<< HEAD
    * *NOTE*: This function is also published on window for easy access.<br>
    * *NOTE*: Only available with {@link http://pivotal.github.com/jasmine/ jasmine}.
+=======
+<<<<<<< HEAD
+   * *NOTE*: This is function is also published on window for easy access.<br>
+   * *NOTE*: Only available with {@link http://pivotal.github.com/jasmine/ jasmine}.
+=======
+   * *NOTE*: This function is also published on window for easy access.<br>
+>>>>>>> 8dca056... docs(mocks): fix typos
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
    *
    * The inject function wraps a function into an injectable function. The inject() creates new
    * instance of {@link AUTO.$injector $injector} per test, which is then used for

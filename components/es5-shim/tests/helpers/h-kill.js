@@ -43,10 +43,13 @@ HLP.kill(Object, [
     'keys'
 ]);
 
+<<<<<<< HEAD
 HLP.kill(Number.prototype, [
     'toFixed'
 ]);
 
+=======
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 HLP.kill(Date, [
     'now', 'parse'
 ]);

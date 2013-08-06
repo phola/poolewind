@@ -48,6 +48,7 @@ if (!Object.getPrototypeOf) {
     };
 }
 
+<<<<<<< HEAD
 //ES5 15.2.3.3
 //http://es5.github.com/#x15.2.3.3
 
@@ -78,12 +79,18 @@ if (Object.defineProperty) {
 }
 
 if (!Object.getOwnPropertyDescriptor || getOwnPropertyDescriptorFallback) {
+=======
+// ES5 15.2.3.3
+// http://es5.github.com/#x15.2.3.3
+if (!Object.getOwnPropertyDescriptor) {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
     var ERR_NON_OBJECT = "Object.getOwnPropertyDescriptor called on a non-object: ";
 
     Object.getOwnPropertyDescriptor = function getOwnPropertyDescriptor(object, property) {
         if ((typeof object != "object" && typeof object != "function") || object === null) {
             throw new TypeError(ERR_NON_OBJECT + object);
         }
+<<<<<<< HEAD
 
         // make a valiant attempt to use the real getOwnPropertyDescriptor
         // for I8's DOM elements.
@@ -95,6 +102,8 @@ if (!Object.getOwnPropertyDescriptor || getOwnPropertyDescriptorFallback) {
             }
         }
 
+=======
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         // If object does not owns property return undefined immediately.
         if (!owns(object, property)) {
             return;
@@ -137,7 +146,10 @@ if (!Object.getOwnPropertyDescriptor || getOwnPropertyDescriptorFallback) {
         // If we got this far we know that object has an own property that is
         // not an accessor so we set it as a value and return descriptor.
         descriptor.value = object[property];
+<<<<<<< HEAD
         descriptor.writable = true;
+=======
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         return descriptor;
     };
 }
@@ -167,7 +179,11 @@ if (!Object.create) {
         // aside from Object.prototype itself. Instead, create a new global
         // object and *steal* its Object.prototype and strip it bare. This is
         // used as the prototype to create nullary objects.
+<<<<<<< HEAD
         createEmpty = function () {
+=======
+        createEmpty = (function () {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             var iframe = document.createElement('iframe');
             var parent = document.body || document.documentElement;
             iframe.style.display = 'none';
@@ -187,12 +203,20 @@ if (!Object.create) {
 
             function Empty() {}
             Empty.prototype = empty;
+<<<<<<< HEAD
             // short-circuit future calls
             createEmpty = function () {
                 return new Empty();
             };
             return new Empty();
         };
+=======
+
+            return function () {
+                return new Empty();
+            };
+        })();
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
     }
 
     Object.create = function create(prototype, properties) {
