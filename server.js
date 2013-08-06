@@ -52,7 +52,7 @@ function logger()
       timestamp.setHours(parseInt(arr[29]));
       timestamp.setMinutes(parseInt(arr[30]));
       timestamp.setSeconds(parseInt(arr[31]));
-      console.log(timestamp);
+      //console.log(timestamp);
       var data = {
                    's' : arr[1], //avspeed
                    //'MaxGust' : arr[71],
@@ -191,8 +191,8 @@ if (counter>0)
    rAv = { d : tD/counter , s: tS/counter, t:parseInt(latest)};
 }
          
-console.log(counter);
-console.log(rAv);
+//console.log(counter);
+//console.log(rAv);
 
           refs.reverse();
           //console.log(refs);
@@ -209,12 +209,18 @@ console.log(rAv);
 
 
 function hlogger() {
+  if (rAv)
+  {
   var hlogref = myRootRef.child("hlog");
  hlogref.child(rAv.t).setWithPriority(rAv,rAv.t);
+ console.log(rAv);
+ console.log(new Date());
+}
 }
 
 //scrapeLive();
-//hlogger();
+setTimeout(hlogger,30000);
+
 setInterval(logger,10000);
 setInterval(hlogger,600000);
 //setInterval(scrapeHistory,600000);

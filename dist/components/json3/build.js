@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 
+<<<<<<< HEAD
 /* JSON 3 Builder | http://bestiejs.github.io/json3 */
+=======
+/* JSON 3 Builder | http://bestiejs.github.com/json3 */
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 var path = require("path"), fs = require("fs"), gzip = require("zlib").gzip, spawn = require("child_process").spawn, marked = require(path.join(__dirname, "vendor", "marked")),
 
 // The path to the Closure Compiler `.jar` file.
@@ -10,6 +14,7 @@ closurePath = path.join(__dirname, "vendor", "closure-compiler.jar"),
 // warnings apart from syntax and optimization errors.
 closureOptions = ["--compilation_level=ADVANCED_OPTIMIZATIONS", "--warning_level=QUIET"];
 
+<<<<<<< HEAD
 // A RegExp used to detect the `define` pragma used by asynchronous module
 // loaders.
 var definePattern = RegExp('(?:' +
@@ -56,6 +61,8 @@ var definePattern = RegExp('(?:' +
   ')?' +
 ')', 'g');
 
+=======
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 // Enable GitHub-Flavored Markdown.
 marked.setOptions({ "gfm": true });
 
@@ -163,8 +170,15 @@ fs.readFile(path.join(__dirname, "lib", "json3.js"), "utf8", function readSource
       }
       compressSource(exception, output);
     });
+<<<<<<< HEAD
     // Proxy the preprocessed source to the Closure Compiler.
     compiler.stdin.end(preprocessSource(source));
+=======
+    // Proxy the source to the Closure Compiler. The top-level
+    // immediately-invoked function expression is removed, as the output is
+    // automatically wrapped in one.
+    compiler.stdin.end(source.replace(/^;?\(function\s*\(\)\s*\{([\s\S]*?)}\)\.call\(this\);*?/m, "$1"));
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
   }
 
   // Post-processes the compressed source and writes the result to disk.
@@ -172,8 +186,15 @@ fs.readFile(path.join(__dirname, "lib", "json3.js"), "utf8", function readSource
     if (exception) {
       console.log(exception);
     } else {
+<<<<<<< HEAD
       // Extract the JSON 3 header and clean up the minified source.
       compressed = extractComments(source)[0] + postprocessSource(compressed);
+=======
+      // Extract the JSON 3 header and wrap the compressed source in an
+      // IIFE (enabling advanced optimizations causes the Compiler to add
+      // variables to the global scope).
+      compressed = extractComments(source)[0] + "\n;(function(){" + compressed + "}());";
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
       // Write the compressed version to disk.
       fs.writeFile(path.join(__dirname, "lib", "json3.min.js"), compressed, writeSource);
     }
@@ -252,6 +273,7 @@ function extractComments(source) {
     }
   }
   return results;
+<<<<<<< HEAD
 }
 
 function preprocessSource(source) {
@@ -266,4 +288,6 @@ function postprocessSource(source) {
   // causes the Compiler to add variables to the global scope) and fix the
   // `define` pragma.
   return "\n;(function(){" + source.replace(definePattern, 'typeof define==="function"&&define.amd') + "}());";
+=======
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 }

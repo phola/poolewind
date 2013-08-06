@@ -1,8 +1,14 @@
 {
   "name": "json3",
+<<<<<<< HEAD
   "version": "3.2.5",
   "description": "A modern JSON implementation compatible with nearly all JavaScript platforms.",
   "homepage": "http://bestiejs.github.io/json3",
+=======
+  "version": "3.2.4",
+  "description": "A modern JSON implementation compatible with nearly all JavaScript platforms.",
+  "homepage": "http://bestiejs.github.com/json3",
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
   "main": "./lib/json3",
   "keywords": ["json", "spec", "ecma", "es5", "lexer", "parser", "stringify"],
   "licenses": [{
@@ -11,6 +17,7 @@
   }],
   "author": {
     "name": "Kit Cambridge",
+<<<<<<< HEAD
     "email": "github@kitcambridge.be",
     "web": "http://kitcambridge.be/"
   },
@@ -38,6 +45,16 @@
   }],
   "bugs": {
     "url": "https://github.com/bestiejs/json3/issues"
+=======
+    "web": "http://kitcambridge.github.com"
+  },
+  "maintainers": [{
+    "name": "Kit Cambridge",
+    "web": "http://kitcambridge.github.com"
+  }],
+  "bugs": {
+    "url": "http://github.com/bestiejs/json3/issues"
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
   },
   "scripts": {
     "test": "node test/test_*.js"

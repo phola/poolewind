@@ -1,16 +1,26 @@
+<<<<<<< HEAD
 /*! JSON v3.2.5 | http://bestiejs.github.io/json3 | Copyright 2012-2013, Kit Cambridge | http://kit.mit-license.org */
 ;(function (window) {
+=======
+/*! JSON v3.2.4 | http://bestiejs.github.com/json3 | Copyright 2012, Kit Cambridge | http://kit.mit-license.org */
+;(function () {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
   // Convenience aliases.
   var getClass = {}.toString, isProperty, forEach, undef;
 
   // Detect the `define` function exposed by asynchronous module loaders. The
   // strict `define` check is necessary for compatibility with `r.js`.
+<<<<<<< HEAD
   var isLoader = typeof define === "function" && define.amd, JSON3 = typeof exports == "object" && exports;
+=======
+  var isLoader = typeof define === "function" && define.amd, JSON3 = !isLoader && typeof exports == "object" && exports;
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
 
   if (JSON3 || isLoader) {
     if (typeof JSON == "object" && JSON) {
       // Delegate to the native `stringify` and `parse` implementations in
       // asynchronous module loaders and CommonJS environments.
+<<<<<<< HEAD
       if (JSON3) {
         JSON3.stringify = JSON.stringify;
         JSON3.parse = JSON.parse;
@@ -31,6 +41,33 @@
     // The `getUTCFullYear`, `Month`, and `Date` methods return nonsensical
     // results for certain dates in Opera >= 10.53.
     isExtended = isExtended.getUTCFullYear() == -109252 && isExtended.getUTCMonth() === 0 && isExtended.getUTCDate() === 1 &&
+=======
+      if (isLoader) {
+        JSON3 = JSON;
+      } else {
+        JSON3.stringify = JSON.stringify;
+        JSON3.parse = JSON.parse;
+      }
+    } else if (isLoader) {
+      JSON3 = this.JSON = {};
+    }
+  } else {
+    // Export for web browsers and JavaScript engines.
+    JSON3 = this.JSON || (this.JSON = {});
+  }
+
+  // Local variables.
+  var Escapes, toPaddedString, quote, serialize;
+  var fromCharCode, Unescapes, abort, lex, get, walk, update, Index, Source;
+
+  // Test the `Date#getUTC*` methods. Based on work by @Yaffle.
+  var isExtended = new Date(-3509827334573292), floor, Months, getDay;
+
+  try {
+    // The `getUTCFullYear`, `Month`, and `Date` methods return nonsensical
+    // results for certain dates in Opera >= 10.53.
+    isExtended = isExtended.getUTCFullYear() == -109252 && isExtended.getUTCMonth() === 0 && isExtended.getUTCDate() == 1 &&
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
       // Safari < 2.0.2 stores the internal millisecond time value correctly,
       // but clips the values returned by the date methods to the range of
       // signed 32-bit integers ([-2 ** 31, 2 ** 31 - 1]).
@@ -40,6 +77,7 @@
   // Internal: Determines whether the native `JSON.stringify` and `parse`
   // implementations are spec-compliant. Based on work by Ken Snyder.
   function has(name) {
+<<<<<<< HEAD
     if (name == "bug-string-char-index") {
       // IE <= 7 doesn't support accessing string characters using square
       // bracket notation. IE 8 only supports this for primitives.
@@ -51,6 +89,13 @@
       if (name == "json-stringify" || isAll) {
         var stringify = JSON3.stringify, stringifySupported = typeof stringify == "function" && isExtended;
         if (stringifySupported) {
+=======
+    var stringifySupported, parseSupported, value, serialized = '{"A":[1,true,false,null,"\\u0000\\b\\n\\f\\r\\t"]}', all = name == "json";
+    if (all || name == "json-stringify" || name == "json-parse") {
+      // Test `JSON.stringify`.
+      if (name == "json-stringify" || all) {
+        if ((stringifySupported = typeof JSON3.stringify == "function" && isExtended)) {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           // A test function object with a custom `toJSON` method.
           (value = function () {
             return 1;
@@ -59,15 +104,24 @@
             stringifySupported =
               // Firefox 3.1b1 and b2 serialize string, number, and boolean
               // primitives as object literals.
+<<<<<<< HEAD
               stringify(0) === "0" &&
               // FF 3.1b1, b2, and JSON 2 serialize wrapped primitives as object
               // literals.
               stringify(new Number()) === "0" &&
               stringify(new String()) == '""' &&
+=======
+              JSON3.stringify(0) === "0" &&
+              // FF 3.1b1, b2, and JSON 2 serialize wrapped primitives as object
+              // literals.
+              JSON3.stringify(new Number()) === "0" &&
+              JSON3.stringify(new String()) == '""' &&
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
               // FF 3.1b1, 2 throw an error if the value is `null`, `undefined`, or
               // does not define a canonical JSON representation (this applies to
               // objects with `toJSON` properties as well, *unless* they are nested
               // within an object or array).
+<<<<<<< HEAD
               stringify(getClass) === undef &&
               // IE 8 serializes `undefined` as `"undefined"`. Safari <= 5.1.7 and
               // FF 3.1b3 pass this test.
@@ -75,11 +129,21 @@
               // Safari <= 5.1.7 and FF 3.1b3 throw `Error`s and `TypeError`s,
               // respectively, if the value is omitted entirely.
               stringify() === undef &&
+=======
+              JSON3.stringify(getClass) === undef &&
+              // IE 8 serializes `undefined` as `"undefined"`. Safari <= 5.1.7 and
+              // FF 3.1b3 pass this test.
+              JSON3.stringify(undef) === undef &&
+              // Safari <= 5.1.7 and FF 3.1b3 throw `Error`s and `TypeError`s,
+              // respectively, if the value is omitted entirely.
+              JSON3.stringify() === undef &&
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
               // FF 3.1b1, 2 throw an error if the given value is not a number,
               // string, array, object, Boolean, or `null` literal. This applies to
               // objects with custom `toJSON` methods as well, unless they are nested
               // inside object or array literals. YUI 3.0.0b1 ignores custom `toJSON`
               // methods entirely.
+<<<<<<< HEAD
               stringify(value) === "1" &&
               stringify([value]) == "[1]" &&
               // Prototype <= 1.6.1 serializes `[undefined]` as `"[]"` instead of
@@ -87,11 +151,21 @@
               stringify([undef]) == "[null]" &&
               // YUI 3.0.0b1 fails to serialize `null` literals.
               stringify(null) == "null" &&
+=======
+              JSON3.stringify(value) === "1" &&
+              JSON3.stringify([value]) == "[1]" &&
+              // Prototype <= 1.6.1 serializes `[undefined]` as `"[]"` instead of
+              // `"[null]"`.
+              JSON3.stringify([undef]) == "[null]" &&
+              // YUI 3.0.0b1 fails to serialize `null` literals.
+              JSON3.stringify(null) == "null" &&
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
               // FF 3.1b1, 2 halts serialization if an array contains a function:
               // `[1, true, getClass, 1]` serializes as "[1,true,],". These versions
               // of Firefox also allow trailing commas in JSON objects and arrays.
               // FF 3.1b3 elides non-JSON values from objects and arrays, unless they
               // define custom `toJSON` methods.
+<<<<<<< HEAD
               stringify([undef, getClass, null]) == "[null,null,null]" &&
               // Simple serialization test. FF 3.1b1 uses Unicode escape sequences
               // where character escape codes are expected (e.g., `\b` => `\u0008`).
@@ -110,22 +184,52 @@
               // Safari <= 5.1.5 and Opera >= 10.53 incorrectly serialize millisecond
               // values less than 1000. Credits: @Yaffle.
               stringify(new Date(-1)) == '"1969-12-31T23:59:59.999Z"';
+=======
+              JSON3.stringify([undef, getClass, null]) == "[null,null,null]" &&
+              // Simple serialization test. FF 3.1b1 uses Unicode escape sequences
+              // where character escape codes are expected (e.g., `\b` => `\u0008`).
+              JSON3.stringify({ "A": [value, true, false, null, "\0\b\n\f\r\t"] }) == serialized &&
+              // FF 3.1b1 and b2 ignore the `filter` and `width` arguments.
+              JSON3.stringify(null, value) === "1" &&
+              JSON3.stringify([1, 2], null, 1) == "[\n 1,\n 2\n]" &&
+              // JSON 2, Prototype <= 1.7, and older WebKit builds incorrectly
+              // serialize extended years.
+              JSON3.stringify(new Date(-8.64e15)) == '"-271821-04-20T00:00:00.000Z"' &&
+              // The milliseconds are optional in ES 5, but required in 5.1.
+              JSON3.stringify(new Date(8.64e15)) == '"+275760-09-13T00:00:00.000Z"' &&
+              // Firefox <= 11.0 incorrectly serializes years prior to 0 as negative
+              // four-digit years instead of six-digit years. Credits: @Yaffle.
+              JSON3.stringify(new Date(-621987552e5)) == '"-000001-01-01T00:00:00.000Z"' &&
+              // Safari <= 5.1.5 and Opera >= 10.53 incorrectly serialize millisecond
+              // values less than 1000. Credits: @Yaffle.
+              JSON3.stringify(new Date(-1)) == '"1969-12-31T23:59:59.999Z"';
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           } catch (exception) {
             stringifySupported = false;
           }
         }
+<<<<<<< HEAD
         if (!isAll) {
+=======
+        if (!all) {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           return stringifySupported;
         }
       }
       // Test `JSON.parse`.
+<<<<<<< HEAD
       if (name == "json-parse" || isAll) {
         var parse = JSON3.parse;
         if (typeof parse == "function") {
+=======
+      if (name == "json-parse" || all) {
+        if (typeof JSON3.parse == "function") {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           try {
             // FF 3.1b1, b2 will throw an exception if a bare literal is provided.
             // Conforming implementations should also coerce the initial argument to
             // a string prior to parsing.
+<<<<<<< HEAD
             if (parse("0") === 0 && !parse(false)) {
               // Simple parsing test.
               value = parse(serialized);
@@ -134,13 +238,26 @@
                 try {
                   // Safari <= 5.1.2 and FF 3.1b1 allow unescaped tabs in strings.
                   parseSupported = !parse('"\t"');
+=======
+            if (JSON3.parse("0") === 0 && !JSON3.parse(false)) {
+              // Simple parsing test.
+              value = JSON3.parse(serialized);
+              if ((parseSupported = value.A.length == 5 && value.A[0] == 1)) {
+                try {
+                  // Safari <= 5.1.2 and FF 3.1b1 allow unescaped tabs in strings.
+                  parseSupported = !JSON3.parse('"\t"');
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 } catch (exception) {}
                 if (parseSupported) {
                   try {
                     // FF 4.0 and 4.0.1 allow leading `+` signs, and leading and
                     // trailing decimal points. FF 4.0, 4.0.1, and IE 9-10 also
                     // allow certain octal literals.
+<<<<<<< HEAD
                     parseSupported = parse("01") !== 1;
+=======
+                    parseSupported = JSON3.parse("01") != 1;
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                   } catch (exception) {}
                 }
               }
@@ -149,7 +266,11 @@
             parseSupported = false;
           }
         }
+<<<<<<< HEAD
         if (!isAll) {
+=======
+        if (!all) {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           return parseSupported;
         }
       }
@@ -158,6 +279,7 @@
   }
 
   if (!has("json")) {
+<<<<<<< HEAD
     // Common `[[Class]]` name aliases.
     var functionClass = "[object Function]";
     var dateClass = "[object Date]";
@@ -182,6 +304,21 @@
       };
     }
 
+=======
+    // Define additional utility methods if the `Date` methods are buggy.
+    if (!isExtended) {
+      floor = Math.floor;
+      // A mapping between the months of the year and the number of days between
+      // January 1st and the first of the respective month.
+      Months = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+      // Internal: Calculates the number of days between the Unix epoch and the
+      // first day of the given month.
+      getDay = function (year, month) {
+        return Months[month] + 365 * (year - 1970) + floor((year - 1969 + (month = +(month > 1))) / 4) - floor((year - 1901 + month) / 100) + floor((year - 1601 + month) / 400);
+      };
+    }
+    
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
     // Internal: Determines if a property is a direct property of the given
     // object. Delegates to the native `Object#hasOwnProperty` method.
     if (!(isProperty = {}.hasOwnProperty)) {
@@ -247,7 +384,11 @@
         // IE <= 8, Mozilla 1.0, and Netscape 6.2 ignore shadowed non-enumerable
         // properties.
         forEach = function (object, callback) {
+<<<<<<< HEAD
           var isFunction = getClass.call(object) == functionClass, property, length;
+=======
+          var isFunction = getClass.call(object) == "[object Function]", property, length;
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           for (property in object) {
             // Gecko <= 1.0 enumerates the `prototype` property of functions under
             // certain conditions; IE does not.
@@ -262,7 +403,11 @@
         // Safari <= 2.0.4 enumerates shadowed properties twice.
         forEach = function (object, callback) {
           // Create a set of iterated properties.
+<<<<<<< HEAD
           var members = {}, isFunction = getClass.call(object) == functionClass, property;
+=======
+          var members = {}, isFunction = getClass.call(object) == "[object Function]", property;
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           for (property in object) {
             // Store each property name to prevent double enumeration. The
             // `prototype` property of functions is not enumerated due to cross-
@@ -275,7 +420,11 @@
       } else {
         // No bugs detected; use the standard `for...in` algorithm.
         forEach = function (object, callback) {
+<<<<<<< HEAD
           var isFunction = getClass.call(object) == functionClass, property, isConstructor;
+=======
+          var isFunction = getClass.call(object) == "[object Function]", property, isConstructor;
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           for (property in object) {
             if (!(isFunction && property == "prototype") && isProperty.call(object, property) && !(isConstructor = property === "constructor")) {
               callback(property);
@@ -299,6 +448,7 @@
     // level of the output.
     if (!has("json-stringify")) {
       // Internal: A map of control characters and their escaped equivalents.
+<<<<<<< HEAD
       var Escapes = {
         92: "\\\\",
         34: '\\"',
@@ -307,21 +457,39 @@
         10: "\\n",
         13: "\\r",
         9: "\\t"
+=======
+      Escapes = {
+        "\\": "\\\\",
+        '"': '\\"',
+        "\b": "\\b",
+        "\f": "\\f",
+        "\n": "\\n",
+        "\r": "\\r",
+        "\t": "\\t"
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
       };
 
       // Internal: Converts `value` into a zero-padded string such that its
       // length is at least equal to `width`. The `width` must be <= 6.
+<<<<<<< HEAD
       var leadingZeroes = "000000";
       var toPaddedString = function (width, value) {
         // The `|| 0` expression is necessary to work around a bug in
         // Opera <= 7.54u2 where `0 == -0`, but `String(-0) !== "0"`.
         return (leadingZeroes + (value || 0)).slice(-width);
+=======
+      toPaddedString = function (width, value) {
+        // The `|| 0` expression is necessary to work around a bug in
+        // Opera <= 7.54u2 where `0 == -0`, but `String(-0) !== "0"`.
+        return ("000000" + (value || 0)).slice(-width);
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
       };
 
       // Internal: Double-quotes a string `value`, replacing all ASCII control
       // characters (characters with code unit values between 0 and 31) with
       // their escaped equivalents. This is an implementation of the
       // `Quote(value)` operation defined in ES 5.1 section 15.12.3.
+<<<<<<< HEAD
       var unicodePrefix = "\\u00";
       var quote = function (value) {
         var result = '"', index = 0, length = value.length, isLarge = length > 10 && charIndexBuggy, symbols;
@@ -343,12 +511,24 @@
               }
               result += isLarge ? symbols[index] : charIndexBuggy ? value.charAt(index) : value[index];
           }
+=======
+      quote = function (value) {
+        var result = '"', index = 0, symbol;
+        for (; symbol = value.charAt(index); index++) {
+          // Escape the reverse solidus, double quote, backspace, form feed, line
+          // feed, carriage return, and tab characters.
+          result += '\\"\b\f\n\r\t'.indexOf(symbol) > -1 ? Escapes[symbol] :
+            // If the character is a control character, append its Unicode escape
+            // sequence; otherwise, append the character as-is.
+            (Escapes[symbol] = symbol < " " ? "\\u00" + toPaddedString(2, symbol.charCodeAt(0).toString(16)) : symbol);
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         }
         return result + '"';
       };
 
       // Internal: Recursively serializes an object. Implements the
       // `Str(key, holder)`, `JO(value)`, and `JA(value)` operations.
+<<<<<<< HEAD
       var serialize = function (property, object, callback, properties, whitespace, indentation, stack) {
         var value = object[property], className, year, month, date, time, hours, minutes, seconds, milliseconds, results, element, index, length, prefix, hasMembers, result;
         try {
@@ -358,6 +538,13 @@
         if (typeof value == "object" && value) {
           className = getClass.call(value);
           if (className == dateClass && !isProperty.call(value, "toJSON")) {
+=======
+      serialize = function (property, object, callback, properties, whitespace, indentation, stack) {
+        var value = object[property], className, year, month, date, time, hours, minutes, seconds, milliseconds, results, element, index, length, prefix, any, result;
+        if (typeof value == "object" && value) {
+          className = getClass.call(value);
+          if (className == "[object Date]" && !isProperty.call(value, "toJSON")) {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             if (value > -1 / 0 && value < 1 / 0) {
               // Dates are serialized according to the `Date#toJSON` method
               // specified in ES 5.1 section 15.9.5.44. See section 15.9.1.15
@@ -401,7 +588,11 @@
             } else {
               value = null;
             }
+<<<<<<< HEAD
           } else if (typeof value.toJSON == "function" && ((className != numberClass && className != stringClass && className != arrayClass) || isProperty.call(value, "toJSON"))) {
+=======
+          } else if (typeof value.toJSON == "function" && ((className != "[object Number]" && className != "[object String]" && className != "[object Array]") || isProperty.call(value, "toJSON"))) {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             // Prototype <= 1.6.1 adds non-standard `toJSON` methods to the
             // `Number`, `String`, `Date`, and `Array` prototypes. JSON 3
             // ignores all `toJSON` methods on these objects unless they are
@@ -418,6 +609,7 @@
           return "null";
         }
         className = getClass.call(value);
+<<<<<<< HEAD
         if (className == booleanClass) {
           // Booleans are represented literally.
           return "" + value;
@@ -426,6 +618,16 @@
           // `"null"`.
           return value > -1 / 0 && value < 1 / 0 ? "" + value : "null";
         } else if (className == stringClass) {
+=======
+        if (className == "[object Boolean]") {
+          // Booleans are represented literally.
+          return "" + value;
+        } else if (className == "[object Number]") {
+          // JSON numbers must be finite. `Infinity` and `NaN` are serialized as
+          // `"null"`.
+          return value > -1 / 0 && value < 1 / 0 ? "" + value : "null";
+        } else if (className == "[object String]") {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           // Strings are double-quoted and escaped.
           return quote(value);
         }
@@ -445,6 +647,7 @@
           // Save the current indentation level and indent one additional level.
           prefix = indentation;
           indentation += whitespace;
+<<<<<<< HEAD
           if (className == arrayClass) {
             // Recursively serialize array elements.
             for (index = 0, length = value.length; index < length; hasMembers || (hasMembers = true), index++) {
@@ -452,6 +655,15 @@
               results.push(element === undef ? "null" : element);
             }
             result = hasMembers ? (whitespace ? "[\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "]" : ("[" + results.join(",") + "]")) : "[]";
+=======
+          if (className == "[object Array]") {
+            // Recursively serialize array elements.
+            for (index = 0, length = value.length; index < length; any || (any = true), index++) {
+              element = serialize(index, value, callback, properties, whitespace, indentation, stack);
+              results.push(element === undef ? "null" : element);
+            }
+            result = any ? (whitespace ? "[\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "]" : ("[" + results.join(",") + "]")) : "[]";
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           } else {
             // Recursively serialize object members. Members are selected from
             // either a user-specified list of property names, or the object
@@ -467,9 +679,15 @@
                 // `JSON.stringify`.
                 results.push(quote(property) + ":" + (whitespace ? " " : "") + element);
               }
+<<<<<<< HEAD
               hasMembers || (hasMembers = true);
             });
             result = hasMembers ? (whitespace ? "{\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "}" : ("{" + results.join(",") + "}")) : "{}";
+=======
+              any || (any = true);
+            });
+            result = any ? (whitespace ? "{\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "}" : ("{" + results.join(",") + "}")) : "{}";
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           }
           // Remove the object from the traversed object stack.
           stack.pop();
@@ -479,6 +697,7 @@
 
       // Public: `JSON.stringify`. See ES 5.1 section 15.12.3.
       JSON3.stringify = function (source, filter, width) {
+<<<<<<< HEAD
         var whitespace, callback, properties;
         if (typeof filter == "function" || typeof filter == "object" && filter) {
           if (getClass.call(filter) == functionClass) {
@@ -491,12 +710,30 @@
         }
         if (width) {
           if (getClass.call(width) == numberClass) {
+=======
+        var whitespace, callback, properties, index, length, value;
+        if (typeof filter == "function" || typeof filter == "object" && filter) {
+          if (getClass.call(filter) == "[object Function]") {
+            callback = filter;
+          } else if (getClass.call(filter) == "[object Array]") {
+            // Convert the property names array into a makeshift set.
+            properties = {};
+            for (index = 0, length = filter.length; index < length; value = filter[index++], ((getClass.call(value) == "[object String]" || getClass.call(value) == "[object Number]") && (properties[value] = 1)));
+          }
+        }
+        if (width) {
+          if (getClass.call(width) == "[object Number]") {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             // Convert the `width` to an integer and create a string containing
             // `width` number of space characters.
             if ((width -= width % 1) > 0) {
               for (whitespace = "", width > 10 && (width = 10); whitespace.length < width; whitespace += " ");
             }
+<<<<<<< HEAD
           } else if (getClass.call(width) == stringClass) {
+=======
+          } else if (getClass.call(width) == "[object String]") {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             whitespace = width.length <= 10 ? width : width.slice(0, 10);
           }
         }
@@ -509,6 +746,7 @@
 
     // Public: Parses a JSON source string.
     if (!has("json-parse")) {
+<<<<<<< HEAD
       var fromCharCode = String.fromCharCode;
 
       // Internal: A map of escaped control characters and their unescaped
@@ -529,6 +767,24 @@
 
       // Internal: Resets the parser state and throws a `SyntaxError`.
       var abort = function() {
+=======
+      fromCharCode = String.fromCharCode;
+      // Internal: A map of escaped control characters and their unescaped
+      // equivalents.
+      Unescapes = {
+        "\\": "\\",
+        '"': '"',
+        "/": "/",
+        "b": "\b",
+        "t": "\t",
+        "n": "\n",
+        "f": "\f",
+        "r": "\r"
+      };
+
+      // Internal: Resets the parser state and throws a `SyntaxError`.
+      abort = function() {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         Index = Source = null;
         throw SyntaxError();
       };
@@ -536,6 +792,7 @@
       // Internal: Returns the next token, or `"$"` if the parser has reached
       // the end of the source string. A token may be a string, number, `null`
       // literal, or Boolean literal.
+<<<<<<< HEAD
       var lex = function () {
         var source = Source, length = source.length, value, begin, position, isSigned, charCode;
         while (Index < length) {
@@ -686,6 +943,142 @@
               }
               // Unrecognized token.
               abort();
+=======
+      lex = function () {
+        var source = Source, length = source.length, symbol, value, begin, position, sign;
+        while (Index < length) {
+          symbol = source.charAt(Index);
+          if ("\t\r\n ".indexOf(symbol) > -1) {
+            // Skip whitespace tokens, including tabs, carriage returns, line
+            // feeds, and space characters.
+            Index++;
+          } else if ("{}[]:,".indexOf(symbol) > -1) {
+            // Parse a punctuator token at the current position.
+            Index++;
+            return symbol;
+          } else if (symbol == '"') {
+            // Advance to the next character and parse a JSON string at the
+            // current position. String tokens are prefixed with the sentinel
+            // `@` character to distinguish them from punctuators.
+            for (value = "@", Index++; Index < length;) {
+              symbol = source.charAt(Index);
+              if (symbol < " ") {
+                // Unescaped ASCII control characters are not permitted.
+                abort();
+              } else if (symbol == "\\") {
+                // Parse escaped JSON control characters, `"`, `\`, `/`, and
+                // Unicode escape sequences.
+                symbol = source.charAt(++Index);
+                if ('\\"/btnfr'.indexOf(symbol) > -1) {
+                  // Revive escaped control characters.
+                  value += Unescapes[symbol];
+                  Index++;
+                } else if (symbol == "u") {
+                  // Advance to the first character of the escape sequence.
+                  begin = ++Index;
+                  // Validate the Unicode escape sequence.
+                  for (position = Index + 4; Index < position; Index++) {
+                    symbol = source.charAt(Index);
+                    // A valid sequence comprises four hexdigits that form a
+                    // single hexadecimal value.
+                    if (!(symbol >= "0" && symbol <= "9" || symbol >= "a" && symbol <= "f" || symbol >= "A" && symbol <= "F")) {
+                      // Invalid Unicode escape sequence.
+                      abort();
+                    }
+                  }
+                  // Revive the escaped character.
+                  value += fromCharCode("0x" + source.slice(begin, Index));
+                } else {
+                  // Invalid escape sequence.
+                  abort();
+                }
+              } else {
+                if (symbol == '"') {
+                  // An unescaped double-quote character marks the end of the
+                  // string.
+                  break;
+                }
+                // Append the original character as-is.
+                value += symbol;
+                Index++;
+              }
+            }
+            if (source.charAt(Index) == '"') {
+              Index++;
+              // Return the revived string.
+              return value;
+            }
+            // Unterminated string.
+            abort();
+          } else {
+            // Parse numbers and literals.
+            begin = Index;
+            // Advance the scanner's position past the sign, if one is
+            // specified.
+            if (symbol == "-") {
+              sign = true;
+              symbol = source.charAt(++Index);
+            }
+            // Parse an integer or floating-point value.
+            if (symbol >= "0" && symbol <= "9") {
+              // Leading zeroes are interpreted as octal literals.
+              if (symbol == "0" && (symbol = source.charAt(Index + 1), symbol >= "0" && symbol <= "9")) {
+                // Illegal octal literal.
+                abort();
+              }
+              sign = false;
+              // Parse the integer component.
+              for (; Index < length && (symbol = source.charAt(Index), symbol >= "0" && symbol <= "9"); Index++);
+              // Floats cannot contain a leading decimal point; however, this
+              // case is already accounted for by the parser.
+              if (source.charAt(Index) == ".") {
+                position = ++Index;
+                // Parse the decimal component.
+                for (; position < length && (symbol = source.charAt(position), symbol >= "0" && symbol <= "9"); position++);
+                if (position == Index) {
+                  // Illegal trailing decimal.
+                  abort();
+                }
+                Index = position;
+              }
+              // Parse exponents.
+              symbol = source.charAt(Index);
+              if (symbol == "e" || symbol == "E") {
+                // Skip past the sign following the exponent, if one is
+                // specified.
+                symbol = source.charAt(++Index);
+                if (symbol == "+" || symbol == "-") {
+                  Index++;
+                }
+                // Parse the exponential component.
+                for (position = Index; position < length && (symbol = source.charAt(position), symbol >= "0" && symbol <= "9"); position++);
+                if (position == Index) {
+                  // Illegal empty exponent.
+                  abort();
+                }
+                Index = position;
+              }
+              // Coerce the parsed value to a JavaScript number.
+              return +source.slice(begin, Index);
+            }
+            // A negative sign may only precede numbers.
+            if (sign) {
+              abort();
+            }
+            // `true`, `false`, and `null` literals.
+            if (source.slice(Index, Index + 4) == "true") {
+              Index += 4;
+              return true;
+            } else if (source.slice(Index, Index + 5) == "false") {
+              Index += 5;
+              return false;
+            } else if (source.slice(Index, Index + 4) == "null") {
+              Index += 4;
+              return null;
+            }
+            // Unrecognized token.
+            abort();
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
           }
         }
         // Return the sentinel `$` character if the parser has reached the end
@@ -694,14 +1087,23 @@
       };
 
       // Internal: Parses a JSON `value` token.
+<<<<<<< HEAD
       var get = function (value) {
         var results, hasMembers;
+=======
+      get = function (value) {
+        var results, any, key;
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         if (value == "$") {
           // Unexpected end of input.
           abort();
         }
         if (typeof value == "string") {
+<<<<<<< HEAD
           if (value[0] == "@") {
+=======
+          if (value.charAt(0) == "@") {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             // Remove the sentinel `@` character.
             return value.slice(1);
           }
@@ -709,7 +1111,11 @@
           if (value == "[") {
             // Parses a JSON array, returning a new JavaScript array.
             results = [];
+<<<<<<< HEAD
             for (;; hasMembers || (hasMembers = true)) {
+=======
+            for (;; any || (any = true)) {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
               value = lex();
               // A closing square bracket marks the end of the array literal.
               if (value == "]") {
@@ -718,7 +1124,11 @@
               // If the array literal contains elements, the current token
               // should be a comma separating the previous element from the
               // next.
+<<<<<<< HEAD
               if (hasMembers) {
+=======
+              if (any) {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 if (value == ",") {
                   value = lex();
                   if (value == "]") {
@@ -740,7 +1150,11 @@
           } else if (value == "{") {
             // Parses a JSON object, returning a new JavaScript object.
             results = {};
+<<<<<<< HEAD
             for (;; hasMembers || (hasMembers = true)) {
+=======
+            for (;; any || (any = true)) {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
               value = lex();
               // A closing curly brace marks the end of the object literal.
               if (value == "}") {
@@ -748,7 +1162,11 @@
               }
               // If the object literal contains members, the current token
               // should be a comma separator.
+<<<<<<< HEAD
               if (hasMembers) {
+=======
+              if (any) {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 if (value == ",") {
                   value = lex();
                   if (value == "}") {
@@ -763,7 +1181,11 @@
               // Leading commas are not permitted, object property names must be
               // double-quoted strings, and a `:` must separate each property
               // name and value.
+<<<<<<< HEAD
               if (value == "," || typeof value != "string" || value[0] != "@" || lex() != ":") {
+=======
+              if (value == "," || typeof value != "string" || value.charAt(0) != "@" || lex() != ":") {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
                 abort();
               }
               results[value.slice(1)] = get(lex());
@@ -777,7 +1199,11 @@
       };
 
       // Internal: Updates a traversed object member.
+<<<<<<< HEAD
       var update = function(source, property, callback) {
+=======
+      update = function(source, property, callback) {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         var element = walk(source, property, callback);
         if (element === undef) {
           delete source[property];
@@ -789,6 +1215,7 @@
       // Internal: Recursively traverses a parsed JSON object, invoking the
       // `callback` function for each value. This is an implementation of the
       // `Walk(holder, name)` operation defined in ES 5.1 section 15.12.2.
+<<<<<<< HEAD
       var walk = function (source, property, callback) {
         var value = source[property], length;
         if (typeof value == "object" && value) {
@@ -796,10 +1223,22 @@
           // because its `Object#hasOwnProperty` implementation returns `false`
           // for array indices (e.g., `![1, 2, 3].hasOwnProperty("0")`).
           if (getClass.call(value) == arrayClass) {
+=======
+      walk = function (source, property, callback) {
+        var value = source[property], length;
+        if (typeof value == "object" && value) {
+          if (getClass.call(value) == "[object Array]") {
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             for (length = value.length; length--;) {
               update(value, length, callback);
             }
           } else {
+<<<<<<< HEAD
+=======
+            // `forEach` can't be used to traverse an array in Opera <= 8.54,
+            // as `Object#hasOwnProperty` returns `false` for array indices
+            // (e.g., `![1, 2, 3].hasOwnProperty("0")`).
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
             forEach(value, function (property) {
               update(value, property, callback);
             });
@@ -812,7 +1251,11 @@
       JSON3.parse = function (source, callback) {
         var result, value;
         Index = 0;
+<<<<<<< HEAD
         Source = "" + source;
+=======
+        Source = source;
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
         result = get(lex());
         // If a JSON string contains multiple tokens, it is invalid.
         if (lex() != "$") {
@@ -820,7 +1263,11 @@
         }
         // Reset the parser state.
         Index = Source = null;
+<<<<<<< HEAD
         return callback && getClass.call(callback) == functionClass ? walk((value = {}, value[""] = result, value), "", callback) : result;
+=======
+        return callback && getClass.call(callback) == "[object Function]" ? walk((value = {}, value[""] = result, value), "", callback) : result;
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
       };
     }
   }
@@ -831,4 +1278,8 @@
       return JSON3;
     });
   }
+<<<<<<< HEAD
 }(this));
+=======
+}).call(this);
+>>>>>>> d5016ba178f0f2a6cecc1928ac6952ddf5a02872
