@@ -6,14 +6,16 @@ angular.module('poolewindApp')
 
         var h = function (index, options, content) {
                   var row = options.data[index];
-                  $scope.weather = {d:parseInt(row.d), s:parseFloat(row.s).toFixed(2), t:row.t};
+                  //$scope.weather = {d:parseInt(row.d), s:parseFloat(row.s).toFixed(2), t:row.t};
+                  $scope.weather = {d:parseInt(row.d), s:parseInt(row.s), t:row.t};
                   return row.s;
                 };
        
         $scope.morrisConfig = { xkey: 't',
                   ykeys: ['s'],//, 'g'],
                   labels: ['Speed'],//, 'Gust']
-                  hoverCallback: h
+                  hoverCallback: h,
+                  lineColors:['#E8E8E8']
          //         ,
          //       dateFormat: function (x) { debugger;return new Date(x).toDateString(); }
                 };
@@ -22,7 +24,7 @@ angular.module('poolewindApp')
     url2 = 'https://wind.firebaseio.com/poole/hlog';
      
         $scope.firehose = angularFireCollection(new Firebase(url).limit(260));
-        $scope.firehose2 = angularFireCollection(new Firebase(url2).limit(5)); 
+        $scope.firehose2 = angularFireCollection(new Firebase(url2).limit(50)); 
 
 
         $scope.testData = [

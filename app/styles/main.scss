@@ -1,4 +1,11 @@
 /* Will be compiled down to a single stylesheet with your sass files */
+body {
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+h1 {
+	font-size:36px;
+}
 #wind {
 		top:39px;
 	  	width: 250px;
@@ -165,7 +172,8 @@ $margin: 15px;
 @for $i from 1 through length($colourlist) {
     $c: nth($colourlist, $i);
     .k#{$i} {background-color: #{$c} }
-    .l#{$i} {border: 20px solid #{$c} }   
+    .l#{$i} {border: 30px solid #{$c} }   
     .l#{$i}:after, .l#{$i}:before {border-bottom-color: #{$c}}
+    .p#{$i} {fill: #{$c} }
 }
     

@@ -22,5 +22,5 @@ Morris.Line.prototype.drawLinePoint = function(xPos, yPos, size, pointColor, lin
            var origDataPoint = this.options.data[pointIndex];
            //can use this to draw arrow direction etc....
           // debugger;
-           return this.raphael.circle(xPos, yPos, size).attr('fill', 'red').attr('stroke-width', this.strokeWidthForSeries(lineIndex)).attr('stroke', this.strokeForSeries(lineIndex));
+           return this.raphael.circle(xPos, yPos, size).attr('fill', 'orange').attr('stroke-width', this.strokeWidthForSeries(lineIndex)).attr('stroke', this.strokeForSeries(lineIndex)).node.setAttribute('class','p'+parseInt(origDataPoint.s));
 };
