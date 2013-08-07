@@ -914,7 +914,7 @@
         row = _ref[_i];
         circle = null;
         if (row._y[index] != null) {
-          circle = this.drawLinePoint(row._x, row._y[index], this.options.pointSize, this.colorFor(row, index, 'point'), index);
+            circle = this.drawLinePoint(row._x, row._y[index], this.options.pointSize, this.colorFor(row, index, 'point'), index);
         }
         _results.push(this.seriesPoints[index].push(circle));
       }
