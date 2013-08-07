@@ -3,7 +3,8 @@ angular.module('ng-morris', []).directive('ngMorris', function() {
         restrict: 'A',
         scope: {
             config: '=config',
-            model: '=ngModel'
+            model: '=ngModel',
+            graph: "="
         },
         link: function($scope, element, attrs) {
 
@@ -16,10 +17,20 @@ angular.module('ng-morris', []).directive('ngMorris', function() {
 
                 $scope.graph = Morris.Line(config);
                 //debugger;
-                $scope.$watchCollection('model', function() {
-                       $scope.graph.setData($scope.model);
-                     //  debugger;
-                });
+
+                  // $scope.$watchCollection('model', function() {
+                  //       //debugger;
+                  //       $scope.graph.setData($scope.model)
+                  //   });
+
+
+               setTimeout(function() {
+                    $scope.graph.setData($scope.model)
+                    $scope.$watchCollection('model', function() {                      
+                        $scope.graph.setData($scope.model)
+                    });
+               }
+               ,600);
 
             }
         }
