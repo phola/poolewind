@@ -227,15 +227,12 @@ setInterval(logger,10000);
 setInterval(hlogger,600000);
 //setInterval(scrapeHistory,600000);
 
-http.createServer(function(req, res) {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  
-  if (rAv)
-  {
-    res.end(JSON.stringify(rAv) + '  -  ' + new Date());
-  }
-  else
-  {
-    res.end('Hello World\n');
-  }
+var static = require('node-static');
+
+var fileServer = new static.Server('./dist');
+
+require('http').createServer(function (request, response) {
+    request.addListener('end', function () {
+        fileServer.serve(request, response);
+    }).resume();
 }).listen(port);

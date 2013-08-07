@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "request": "~2.25.0",
-    "firebase": "~0.6.1"
+    "firebase": "~0.6.1",
+    "node-static": "~0.7.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

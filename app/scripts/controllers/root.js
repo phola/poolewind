@@ -1,12 +1,19 @@
 'use strict';
 
 angular.module('poolewindApp')
-    //.controller('RootCtrl', ['$scope', 'angularFire',  'angularFireCollection',function ($scope, angularFire, angularFireCollection) {
-    .controller('RootCtrl', ['$scope',function ($scope) {
+    .controller('RootCtrl', ['$scope', 'angularFire',  'angularFireCollection',function ($scope, angularFire, angularFireCollection) {
+    //.controller('RootCtrl', ['$scope',function ($scope) {
+
+        var h = function (index, options, content) {
+                  var row = options.data[index];
+                  $scope.weather = {d:parseInt(row.d), s:parseFloat(row.s).toFixed(2), t:row.t};
+                  return row.s;
+                };
        
         $scope.morrisConfig = { xkey: 't',
                   ykeys: ['s'],//, 'g'],
-                  labels: ['Speed']//, 'Gust']
+                  labels: ['Speed'],//, 'Gust']
+                  hoverCallback: h
          //         ,
          //       dateFormat: function (x) { debugger;return new Date(x).toDateString(); }
                 };
@@ -14,8 +21,8 @@ angular.module('poolewindApp')
  var url = 'https://wind.firebaseio.com/poole/log',
     url2 = 'https://wind.firebaseio.com/poole/hlog';
      
-       // $scope.firehose = angularFireCollection(new Firebase(url).limit(260));
-       // $scope.firehose2 = angularFireCollection(new Firebase(url2).limit(5)); 
+        $scope.firehose = angularFireCollection(new Firebase(url).limit(260));
+        $scope.firehose2 = angularFireCollection(new Firebase(url2).limit(5)); 
 
 
         $scope.testData = [
@@ -29,6 +36,10 @@ angular.module('poolewindApp')
 {d:159, s:2.7, t:1375850476679},
 {d:159, s:2.8, t:1375850486629}];
 
-        $scope.weather = $scope.testData[0];     
+        $scope.weather = $scope.testData[0];    
+
+         $scope.$watch('weather', function(a) {
+                   //  debugger;
+                }); 
 
     }]);
