@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('poolewindApp', ['firebase','ng-iscroll', 'ng-morris'])
+angular.module('poolewindApp', [//'firebase',
+  'ng-iscroll', 'ng-morris'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

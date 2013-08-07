@@ -13,11 +13,12 @@ angular.module('ng-morris', []).directive('ngMorris', function() {
             }, $scope.config);
 
             if (Morris) {
+               
                 $scope.graph = Morris.Line(config);
-
+                //debugger;
                 $scope.$watchCollection('model', function() {
-                    var t = $scope.model;
-                    $scope.graph.setData(t);
+                       $scope.graph.setData($scope.model);
+                       debugger;
                 });
 
             }

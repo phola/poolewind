@@ -232,7 +232,7 @@ http.createServer(function(req, res) {
   
   if (rAv)
   {
-    res.end(JSON.stringify(rAv));
+    res.end(JSON.stringify(rAv) + '  -  ' + new Date());
   }
   else
   {
