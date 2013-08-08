@@ -4,6 +4,8 @@ var request = require('request');
 var Firebase = require('firebase');
 
 var myRootRef = new Firebase('https://wind.firebaseIO.com/poole');
+var currentTimeStamp = new Date().getTime();
+var pause = false;
 
 
 
@@ -42,19 +44,27 @@ function scrapeLive()
 
 function logger()
 {
+  if (!pause)
+  {
    var rand = Math.floor(Math.random()*100000000).toString();
    //var weatherRef = myRootRef.child("weather");
    //var historyRef = myRootRef.child("log").push();
    request('http://www.pooleharbourweather.com/weather/clientraw.txt?' + rand, function (error, response, body) {
      if (!error && response.statusCode == 200) {
-      var hourRef = myRootRef.child("log");//.push();
+      var hourRef = myRootRef.child("log");
+      var currentRef = myRootRef.child("live");//.push();
       var arr = body.split(" ");
      // var hourRef = weatherRef.child("log");      
       var timestamp = new Date();
       timestamp.setHours(parseInt(arr[29]));
       timestamp.setMinutes(parseInt(arr[30]));
       timestamp.setSeconds(parseInt(arr[31]));
-      //console.log(timestamp);
+      if (timestamp.getTime()-currentTimeStamp>1000)
+      {
+        console.log(timestamp.getTime()-currentTimeStamp);
+       console.log(currentTimeStamp);
+      currentTimeStamp = timestamp.getTime();
+      
       var data = {
                    's' : arr[1], //avspeed
                    //'MaxGust' : arr[71],
@@ -63,14 +73,20 @@ function logger()
                    't' : timestamp.getTime()
                   };
 
- 
+       currentRef.set(data); 
        hourRef.child(timestamp.getTime()).setWithPriority(data,timestamp.getTime());
+     }
+     else
+     {
+      console.log ('last update:' + currentTimeStamp);
        //trimlog(timestamp.getTime());
+     }
      //  hourRef.set(data);
      // historyRef.set(data);
      
     }
   });
+}
 }
 
 
@@ -200,7 +216,7 @@ if (counter>0)
           //console.log(refs);
 
           refs.forEach(function(r){
-            if ((latest-r)>600000)
+            if ((latest-r)>900000)
             {
              // console.log(r);
              logref.child(r).remove();
@@ -211,19 +227,26 @@ if (counter>0)
 
 
 function hlogger() {
-  if (rAv)
+  if (!pause)
   {
+
+   if (rAv)
+  {
+    if (rAv.t-currentTimeStamp>1000)
+    {
   var hlogref = myRootRef.child("hlog");
  hlogref.child(rAv.t).setWithPriority(rAv,rAv.t);
  console.log(rAv);
  console.log(new Date());
 }
 }
+}
+}
 
 //scrapeLive();
 setTimeout(hlogger,30000);
 
-setInterval(logger,10000);
+setInterval(logger,20000);
 setInterval(hlogger,600000);
 //setInterval(scrapeHistory,600000);
 
