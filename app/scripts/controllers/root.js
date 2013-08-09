@@ -2,14 +2,17 @@
 
 angular.module('poolewindApp')
     .controller('RootCtrl', ['$scope', 'angularFire',  'angularFireCollection',function ($scope, angularFire, angularFireCollection) {
-    //.controller('RootCtrl', ['$scope',function ($scope) {
+            //.controller('RootCtrl', ['$scope',function ($scope) {
+        
 
         var h = function (index, options, content) {
                   var row = options.data[index];
                   //$scope.weather = {d:parseInt(row.d), s:parseFloat(row.s).toFixed(2), t:row.t};
                   //debugger;
                   $scope.weather = {d:Math.round(parseFloat(row.d)), s:Math.round(parseFloat(row.s)), t:row.t};
-                  $scope.$apply();
+                  if(!$scope.$$phase) {
+                    $scope.$apply();
+                  }
                   return row.s;
                 };
        
