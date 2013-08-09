@@ -8,8 +8,8 @@ h1 {
 }
 #wind {
 		top:39px;
-	  	width: 250px;
-    	height: 250px;
+	  	width: 270px;
+    	height: 270px;
     	position: absolute;
     	  left:0;
         right:0;
@@ -69,8 +69,14 @@ h1 {
     position: absolute;
     top: 13px;
     text-align:center;
-    z-index: 10;
+   
     color: #c2e1f5;	
+
+}
+
+
+#windtxt h1 {
+-webkit-transition: all 1s ease;
 }
 
 #wrapper {
@@ -172,8 +178,9 @@ $margin: 15px;
 @for $i from 1 through length($colourlist) {
     $c: nth($colourlist, $i);
     .k#{$i} {background-color: #{$c} }
-    .l#{$i} {border: 30px solid #{$c} }   
-    .l#{$i}:after, .l#{$i}:before {border-bottom-color: #{$c}}
+    .l#{$i} .arrow_box {border-color: #{$c} }   
+    .l#{$i} h1 {color: #{$c} }   
+	.l#{$i} .arrow_box:after, .l#{$i} .arrow_box:before {border-bottom-color: #{$c}}
     .p#{$i} {fill: #{$c} }
 }
     

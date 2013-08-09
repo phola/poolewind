@@ -229,16 +229,16 @@ if (counter>0)
 function hlogger() {
   if (!pause)
   {
-
+console.log(rAv);
    if (rAv)
   {
-    if (rAv.t-currentTimeStamp>1000)
-    {
+   // if (rAv.t-currentTimeStamp>1000)
+   // {
   var hlogref = myRootRef.child("hlog");
  hlogref.child(rAv.t).setWithPriority(rAv,rAv.t);
  console.log(rAv);
  console.log(new Date());
-}
+//}
 }
 }
 }
