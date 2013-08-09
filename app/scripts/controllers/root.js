@@ -21,6 +21,7 @@ angular.module('poolewindApp')
                   labels: ['Speed'],//, 'Gust']
                   hoverCallback: h,
                   lineColors:['#E8E8E8']
+                  //,grid:false
          //         ,
          //       dateFormat: function (x) { debugger;return new Date(x).toDateString(); }
                 };
@@ -43,7 +44,7 @@ angular.module('poolewindApp')
 {d:159, s:2.7, t:1375850476679},
 {d:159, s:2.8, t:1375850486629}];
 
-        $scope.weather = {d:159, s:'loading..', t:1375850399776};
+        $scope.weather = {d:0, s:'?', t:1375850399776};
 
          $scope.$watch('weather', function(a) {
                    //  debugger;

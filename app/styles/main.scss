@@ -6,12 +6,19 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 h1 {
 	font-size:100px;
 }
+
+.gline {
+	z-index:-1;
+opacity:1;
+stroke:#F1F1F1;
+}
 #wind {
 		top:39px;
 	  	width: 270px;
     	height: 270px;
     	position: absolute;
     	  left:0;
+
         right:0;
         margin-left:auto;
         margin-right:auto;
@@ -180,6 +187,6 @@ $margin: 15px;
     .l#{$i} .arrow_box {border-color: #{$c} }   
     .l#{$i} h1 {color: #{$c} }   
 	.l#{$i} .arrow_box:after, .l#{$i} .arrow_box:before {border-bottom-color: #{$c}}
-    .p#{$i} {fill: #{$c} }
+    .p#{$i} {fill: #{$c};stroke: #{$c};}
 }
     
