@@ -60,8 +60,6 @@ h1 {
 	left: 50%;
 	margin-left: -56px;
 }
-.l6{border: 20px solid #0041ff;}
-.l6:after, .l6:before {border-bottom-color: #0041ff;}
 
 #windtxt {
  	width: 100%;
@@ -75,8 +73,9 @@ h1 {
 }
 
 
-#windtxt h1 {
+#wind h1 {
 -webkit-transition: all 1s ease;
+ position: realtive;
 }
 
 #wrapper {
