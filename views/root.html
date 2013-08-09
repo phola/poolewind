@@ -1,5 +1,5 @@
-<div id="wind">
-	<div class="arrow_box l{{weather.s}}" style="-webkit-transform:rotate({{weather.d-180}}deg)"></div> 
+<div id="wind" class="l{{weather.s}}">
+	<div class="arrow_box" style="-webkit-transform:rotate({{weather.d-180}}deg)"></div> 
   	<div id="windtxt"><h1>{{weather.s}}</h1></div> 
   	</div> 
 	<div ng-morris="" config="morrisConfig" ng-model="firehose" graph="liveGraph">
