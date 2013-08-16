@@ -1,11 +1,41 @@
-<div id="wind" class="l{{weather.s}}">
+<div class="topcoat-navigation-bar">
+            <div class="topcoat-navigation-bar__item left quarter">
+                <a id="slide-menu-button" class="topcoat-icon-button--quiet slide-menu-button">
+                    <span class="topcoat-icon topcoat-icon--menu-stack"></span>
+                </a>
+            </div>           
+            <div class="topcoat-navigation-bar__item right three-quarters">
+                              <h1 class="topcoat-navigation-bar__title">Poole Harbour Wind @ {{weather.t}}</h1>                
+
+            </div>
+        </div>
+  <nav class="side-nav">
+            <div class="topcoat-list__container side-nav__list__container">
+                <ul class="topcoat-list side-nav__list">
+                    <li class="topcoat-list__item side-nav__list__item">
+                        <a href="#" class="side-nav__button">Item</a>
+                    </li>
+                    <li class="topcoat-list__item side-nav__list__item is-active">
+                        <a href="#" class="side-nav__button">Item</a>
+                    </li>
+                    <li class="topcoat-list__item side-nav__list__item">
+                        <a href="#" class="side-nav__button">Item</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="wrap" class="l{{weather.s}} main-content">
+<div id="wind" class="">
 	<div class="arrow_box"  style="-webkit-transform:rotate({{weather.d-180}}deg);"></div> 
   	<div id="windtxt"><h1>{{weather.s}}</h1></div> 
 </div> 
-	<div ng-morris config="morrisConfig" ng-model="firehose" graph="liveGraph">
+	<div ng-morris config="morrisConfig" ng-model="firehose2" graph="liveGraph" class="mGraph">
 	
 
   	</div> 
+</div>
+
   <!--	<div ng-morris config="morrisConfig" ng-model="firehose2">
 	
 

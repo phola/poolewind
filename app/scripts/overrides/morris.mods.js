@@ -44,6 +44,12 @@ Morris.Grid.prototype.drawGrid = function() {
     };
 
 
+        Morris.Line.prototype.drawLinePath = function(path, lineColor) {
+      return this.raphael.path(path).attr('stroke', lineColor).attr('stroke-width', this.options.lineWidth).node.setAttribute('class','gl');
+    };
+
+
+
 // //now we have point we can add additional data
 // Morris.Line.prototype.drawLinePoint = function(xPos, yPos, size, pointColor, lineIndex, pointIndex) {
 //            var origDataPoint = this.options.data[pointIndex];

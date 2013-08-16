@@ -8,15 +8,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/main.css
     <link rel="stylesheet" href="styles/bootstrap.css">-->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/topcoat-mobile-dark.css">
     <link rel="stylesheet" href="components/morris/morris.css">
+     <link rel="stylesheet" href="styles/main.css">
+    
     <!-- endbuild -->
   </head>
   <body ng-app="poolewindApp">
+  
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -28,6 +31,8 @@
 
     <!-- Add your site or application content here -->
     <!-- Could use ng-init to pre populate scop vars before eaiting for firebase...cache too? -->
+    
+
     <div class="container" ng-view="" ng-init="greeting='Hello'; person='World'"></div>
 
     <script src="components/jquery/jquery.min.js"></script>
@@ -39,6 +44,8 @@
     <script src="components/iscroll/src/iscroll.js"></script>
     <script src="components/morris/morris.js"></script>
 
+    <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6;source-code-pro:n3.js"></script>
+    
     <!-- build:js scripts/scripts.js -->
      <script src="scripts/overrides/morris.mods.js"></script>   
     <script src="scripts/app.js"></script>

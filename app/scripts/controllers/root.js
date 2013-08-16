@@ -20,7 +20,8 @@ angular.module('poolewindApp')
                   ykeys: ['s'],//, 'g'],
                   labels: ['Speed'],//, 'Gust']
                   hoverCallback: h,
-                  lineColors:['#E8E8E8']
+                  lineColors:['#E8E8E8'],
+                  gridStrokeWidth:1
                   //,grid:false
          //         ,
          //       dateFormat: function (x) { debugger;return new Date(x).toDateString(); }
@@ -30,7 +31,7 @@ angular.module('poolewindApp')
     url2 = 'https://wind.firebaseio.com/poole/hlog';
      
         $scope.firehose = angularFireCollection(new Firebase(url).limit(60));
-        $scope.firehose2 = angularFireCollection(new Firebase(url2).limit(60)); 
+        $scope.firehose2 = angularFireCollection(new Firebase(url2).limit(70)); 
 
 
         $scope.testData = [
@@ -42,7 +43,7 @@ angular.module('poolewindApp')
 {d:159, s:2.4, t:1375850455607},
 {d:159, s:2.7, t:1375850468616},
 {d:159, s:2.7, t:1375850476679},
-{d:159, s:2.8, t:1375850486629}];
+{d:60, s:30, t:1375850486629}];
 
         $scope.weather = {d:0, s:'?', t:1375850399776};
 
