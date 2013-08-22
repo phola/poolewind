@@ -29,9 +29,9 @@ angular.module('poolewindApp')
 
  var url = 'https://wind.firebaseio.com/poole/log',
     url2 = 'https://wind.firebaseio.com/poole/hlog';
-     
+            $scope.firehose2 = angularFireCollection(new Firebase(url2).limit(70)); 
         $scope.firehose = angularFireCollection(new Firebase(url).limit(60));
-        $scope.firehose2 = angularFireCollection(new Firebase(url2).limit(70)); 
+ 
 
 
         $scope.testData = [
