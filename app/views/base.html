@@ -1,4 +1,21 @@
-   <div id="wrap" class="l{{weather.s}} main-content">
+  
+  
+
+       
+         <div class="topcoat-navigation-bar">
+            <div class="topcoat-navigation-bar__item left quarter">
+                <a id="slide-menu-button" class="topcoat-icon-button--quiet slide-menu-button" ng-click="snapper.state().state==='closed' ? snapper.open('left') : snapper.close()">
+                    <span class="topcoat-icon topcoat-icon--menu-stack"></span>
+                </a>
+            </div>           
+            <div class="topcoat-navigation-bar__item right three-quarters">
+                              <h1 class="topcoat-navigation-bar__title">Poole Harbour {{weather.t | date:'dd/MM HH:mm:ss'}}</h1>                
+
+            </div>
+        </div>
+  
+
+        <div id="wrap" class="l{{weather.s}} main-content">
 <div id="wind" class="">
 	<div class="arrow_box"  style="-webkit-transform:rotate({{weather.d-180}}deg);"></div> 
   	<div id="windtxt"><h1>{{weather.s}}</h1></div> 
@@ -8,3 +25,4 @@
 
   	</div> 
 </div>
+

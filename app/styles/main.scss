@@ -34,7 +34,7 @@ stroke:#F1F1F1;
 }
 
 #wind {
-		top:95px;
+		top:31px;
 	  	width: 270px;
     	height: 270px;
     	position: absolute;
@@ -154,6 +154,10 @@ stroke:#F1F1F1;
 .container {
 	width:100%;
 	height:100%;
+	background:inherit;
+}
+
+.snap-content {
 	background:inherit;
 }
 

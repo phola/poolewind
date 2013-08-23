@@ -15,7 +15,12 @@ angular.module('poolewindApp')
                   }
                   return row.s;
                 };
-       
+          
+          $scope.open = function() {
+            debugger;
+
+          }   
+
         $scope.morrisConfig = { xkey: 't',
                   ykeys: ['s'],//, 'g'],
                   labels: ['Speed'],//, 'Gust']
