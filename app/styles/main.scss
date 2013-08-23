@@ -10,13 +10,27 @@ body {
     height:100%;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
+    color:#ffffff;
+}
+p {
+	padding : 8px;
+	
 }
 
+a:link    {color:lime;}
+a:visited {color:lime;}
+a:hover   {color:yellow;}
+a:active  {color:yellow;}
+a:link {text-decoration:none;}
 
 h1 {
 	font-size:100px;
 }
 
+.side-nav
+{
+	background:#3d3d3d;
+}
 .gline {
 	
 opacity:1;
@@ -224,6 +238,35 @@ $margin: 15px;
 
 }
 
+
+
+.loading .arrow_box {   
+    -webkit-animation: Rotate 1500ms infinite linear;
+    -moz-animation: Rotate 1500ms infinite linear;
+    -ms-animation: Rotate 1500ms infinite linear;
+    -o-animation: Rotate 1500ms infinite linear;
+    animation: Rotate 1500ms infinite linear;
+}
+@-o-keyframes Rotate {
+  from {-o-transform:rotate(0deg);}
+  to {-o-transform:rotate(360deg);}
+}
+@-moz-keyframes Rotate {
+  from {-moz-transform:rotate(0deg);}
+  to {-moz-transform:rotate(360deg);}
+}
+@-ms-keyframes Rotate {
+  from {-ms-transform:rotate(0deg);}
+  to {-ms-transform:rotate(360deg);}
+}
+@-webkit-keyframes Rotate {
+  from {-webkit-transform:rotate(0deg);}
+  to {-webkit-transform:rotate(360deg);}
+}
+@-keyframes Rotate {
+  from { transform:rotate(0deg);}
+  to { transform:rotate(360deg);}
+}
 
 
 @media screen and (max-width: 640px) { /* @media screen and (min-width: 880px) { */

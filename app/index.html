@@ -32,24 +32,30 @@
 
     <!-- Add your site or application content here -->
     <!-- Could use ng-init to pre populate scop vars before eaiting for firebase...cache too? -->
-    
+      
 <div class="snap-drawers">
         <nav class="side-nav snap-drawer snap-drawer-left">
+        <p>
+          As a keen local kitesurfer I visit the awesome <a href='http://www.pooleharbourweather.com/weather/' target='_blank'>Poole harbour weather</a> almost daily. Thing is, being flash based it doesn't work on many mobiles so I decided to hack together this app. Very beta but should work well on tiny and huge screens...Hope you find it useful!
+          <br/>
+          Good Winds - Geoff W
+        </p>
             <div class="topcoat-list__container side-nav__list__container">
                 <ul class="topcoat-list side-nav__list">
-                    <li class="topcoat-list__item side-nav__list__item">
+                   <!--  <li class="topcoat-list__item side-nav__list__item">
                         <a href="#" class="side-nav__button">Item</a>
                     </li>
                     <li class="topcoat-list__item side-nav__list__item is-active">
                         <a href="#" class="side-nav__button">Item</a>
-                    </li>
+                    </li> -->
                     <li class="topcoat-list__item side-nav__list__item">
-                        <a href="#" class="side-nav__button">Item</a>
+<!-- A link to launch the Classic Widget -->
+<a href="javascript:void(0)" data-uv-lightbox="classic_widget" data-uv-mode="feedback" data-uv-primary-color="#050505" data-uv-link-color="#1ec94c" data-uv-forum-id="219445">Feedback &amp; Suggestions</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        </div>
+    </div>
     <div ng-snap snapper="snapper" class="snap-content">
           <div class="container" ng-view="" ng-init="greeting='Hello'; person='World'"></div>
     </div>
@@ -76,6 +82,13 @@
     <script src="scripts/directives/ng-snap.js"></script>
     <script src="scripts/directives/touchMouseStart.js"></script>
     <!-- endbuild -->
+
+    <!-- UserVoice JavaScript SDK (only needed once on a page) -->
+<script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/JNbyXtKaGPHy7WW76IiKGQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()</script>
+
+
+
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

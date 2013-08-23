@@ -12,6 +12,9 @@ angular.module('poolewindApp', ['firebase',
         templateUrl: 'views/root.html',
         controller: 'RootCtrl'
       })
+       .when('/feedback', {
+        templateUrl: 'views/uservoice.html'
+      })
       .when('/', {
         templateUrl: 'views/base.html',
         controller: 'RootCtrl'

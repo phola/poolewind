@@ -50,10 +50,12 @@ angular.module('poolewindApp')
 {d:159, s:2.7, t:1375850476679},
 {d:60, s:30, t:1375850486629}];
 
-        $scope.weather = {d:0, s:'?', t:1375850399776};
+        $scope.weather = {d:0, s:'?', t:null};
 
-         $scope.$watch('weather', function(a) {
-                   //  debugger;
-                }); 
+        /* $scope.$watch('weather', function(a) {
+               
+                     var date = new Date(weather.t);
+                     
+                });*/ 
 
     }]);

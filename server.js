@@ -23,7 +23,7 @@ function scrapeLive()
       var hourRef = weatherRef.child(arr[29]);      
       var timestamp = new Date();
       // hack daylight savings azure - 1
-      timestamp.setHours(parseInt(arr[29])-1);
+      timestamp.setHours(parseInt(arr[29])-2);
       timestamp.setMinutes(parseInt(arr[30]));
       timestamp.setSeconds(parseInt(arr[31]));
       console.log(timestamp);

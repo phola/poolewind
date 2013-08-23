@@ -30,7 +30,7 @@ angular.module('ng-morris', []).directive('ngMorris', function() {
                         $scope.graph.setData($scope.model)
                     });
                }
-               ,1000);
+               ,2000);
 
             }
         }
