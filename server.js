@@ -57,7 +57,7 @@ function logger()
       var arr = body.split(" ");
      // var hourRef = weatherRef.child("log");      
       var timestamp = new Date();
-      timestamp.setHours(parseInt(arr[29]));
+      timestamp.setHours(parseInt(arr[29])-1);
       console.log(parseInt(arr[29]));
       timestamp.setMinutes(parseInt(arr[30]));
       timestamp.setSeconds(parseInt(arr[31]));
