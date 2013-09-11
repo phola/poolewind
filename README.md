@@ -1,6 +1,6 @@
 what
 ====
-phola.com/poolewind
+[phola.com/poolewind] (http://phola.com/poolewind "poolewind")
 live wind from poole harbour
 
 why
